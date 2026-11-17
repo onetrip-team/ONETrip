@@ -38,6 +38,7 @@
         .custom-dropdown { max-height: 200px; overflow-y: auto; }
         .loc-item { cursor: pointer; padding: 10px 15px; border-bottom: 1px solid #f0f0f0; transition: background 0.2s; }
         .loc-item:hover { background-color: #f0f8ff; }
+        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .bg-onetrip-gradient { background: linear-gradient(180deg, #5de0e6 0%, #004aad 100%); }
     </style>
@@ -48,7 +49,6 @@
     <nav class="bg-onetrip-gradient text-white z-50 sticky top-0 shadow-md">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center pt-3 pb-2">
-                <!-- LOGO CHÍNH (Đặt file logo.png cùng thư mục với file HTML trên GitHub) -->
                 <div class="flex items-center cursor-pointer" onclick="showAllHomes(); switchTab('food')">
                     <img src="logo.png" alt="OneTrip Logo" class="h-10 md:h-12 w-auto object-contain drop-shadow-sm">
                 </div>
@@ -161,9 +161,9 @@
                             <div class="bg-gradient-to-br from-red-500 to-orange-500 rounded-xl p-6 text-white shadow-md relative overflow-hidden card-hover cursor-pointer">
                                 <i class="fa-solid fa-percent absolute -bottom-4 -right-2 text-8xl text-white opacity-20"></i>
                                 <div data-i18n="promo_exclusive" class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Độc quyền OneTrip</div>
-                                <h3 data-i18n="promo_1_title" class="text-xl font-bold mb-2">Weekend Sale</h3>
-                                <p data-i18n="promo_1_desc" class="text-sm opacity-90 mb-4 h-10">Áp dụng cho mọi nhà hàng khi đặt bàn vào Thứ 6, Thứ 7, Chủ nhật.</p>
-                                <button data-i18n="promo_1_btn" class="bg-white text-red-600 font-bold py-2 px-5 rounded-lg text-sm shadow-sm hover:bg-gray-100 transition">Nhận mã: WEEKEND20</button>
+                                <h3 data-i18n="promo_1_title" class="text-xl font-bold mb-2">Super Friday Sale</h3>
+                                <p data-i18n="promo_1_desc" class="text-sm opacity-90 mb-4 h-10">Giảm tới 27% mọi nhà hàng khi đặt bàn khung giờ 12h-14h Thứ 6.</p>
+                                <button data-i18n="promo_1_btn" class="bg-white text-red-600 font-bold py-2 px-5 rounded-lg text-sm shadow-sm hover:bg-gray-100 transition">Nhận mã: FRIDAYSALE</button>
                             </div>
 
                             <!-- Promo 2 -->
@@ -426,6 +426,37 @@
                         </div>
                         <div id="e_preview_container" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
                     </section>
+
+                    <!-- ƯU ĐÃI GIẢI TRÍ -->
+                    <section id="e-promotions">
+                        <div class="flex items-center gap-2 mb-6">
+                            <i class="fa-solid fa-tags text-ent-purple text-xl"></i>
+                            <h2 data-i18n="offers_title" class="text-2xl font-bold text-gray-800">Ưu đãi hấp dẫn</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-purple-600 to-fuchsia-600 rounded-xl p-6 text-white shadow-md relative overflow-hidden card-hover cursor-pointer">
+                                <i class="fa-solid fa-bolt absolute -bottom-4 -right-2 text-8xl text-white opacity-20"></i>
+                                <div class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Super Friday Sale</div>
+                                <h3 class="text-xl font-bold mb-2">Giảm Đến 26% Vé Vui Chơi</h3>
+                                <p class="text-sm opacity-90 mb-4 h-10">Săn vé VinWonders, Bà Nà Hills giá hời vào khung giờ vàng 12h-14h Thứ 6.</p>
+                                <button class="bg-white text-purple-700 font-bold py-2 px-5 rounded-lg text-sm shadow-sm hover:bg-gray-100 transition">Nhận mã: FUNFRIDAY</button>
+                            </div>
+                            <div class="bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl p-6 text-white shadow-md relative overflow-hidden card-hover cursor-pointer">
+                                <i class="fa-solid fa-ticket absolute -bottom-4 -right-2 text-8xl text-white opacity-20"></i>
+                                <div class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Đặc quyền OneTrip</div>
+                                <h3 class="text-xl font-bold mb-2">Tặng Lối Đi Ưu Tiên</h3>
+                                <p class="text-sm opacity-90 mb-4 h-10">Miễn phí nâng hạng WOW Pass không cần xếp hàng tại các khu vui chơi.</p>
+                                <button class="bg-white text-orange-600 font-bold py-2 px-5 rounded-lg text-sm shadow-sm hover:bg-gray-100 transition">Khám phá ngay</button>
+                            </div>
+                            <div class="bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl p-6 text-white shadow-md relative overflow-hidden card-hover cursor-pointer">
+                                <i class="fa-solid fa-people-group absolute -bottom-4 -right-2 text-8xl text-white opacity-20"></i>
+                                <div class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Combo Gia Đình</div>
+                                <h3 class="text-xl font-bold mb-2">Mua 3 Vé Tặng 1 Vé Trẻ Em</h3>
+                                <p class="text-sm opacity-90 mb-4 h-10">Áp dụng cho tour du thuyền Hạ Long và show diễn thực cảnh.</p>
+                                <button class="bg-white text-teal-700 font-bold py-2 px-5 rounded-lg text-sm shadow-sm hover:bg-gray-100 transition">Xem danh sách</button>
+                            </div>
+                        </div>
+                    </section>
                 </main>
             </div>
             
@@ -476,7 +507,7 @@
                     <div class="bg-onetrip-yellow text-white px-2 py-1 rounded text-sm font-bold flex items-center gap-1 shadow-sm"><i class="fa-solid fa-star"></i> <span id="m_rating"></span></div>
                 </div>
                 <p class="text-gray-500 text-sm mb-4"><i class="fa-solid fa-location-dot mr-1 text-onetrip-light"></i> <span id="m_address">Địa chỉ</span></p>
-                <p class="text-food-red font-bold mb-4 bg-red-50 inline-block px-3 py-1 rounded" id="m_price">Giá</p>
+                <div class="mb-4 bg-red-50 border border-red-100 p-3 rounded-lg" id="m_price">Giá</div>
                 <p id="m_desc" class="text-gray-700 mb-8 leading-relaxed">Mô tả chi tiết</p>
                 <div class="flex flex-wrap gap-3">
                     <button class="flex-1 bg-onetrip-light text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition flex justify-center items-center gap-2" onclick="alert('Tính năng đặt bàn đang được phát triển!')"><i class="fa-regular fa-calendar-check"></i> <span>Đặt bàn ngay</span></button>
@@ -499,7 +530,8 @@
             <p class="text-gray-200 text-sm">Bản quyền © 2026 OneTrip™.</p>
         </div>
     </footer>
-	<!-- MODAL THÔNG TIN FOOTER (VỀ CHÚNG TÔI / ĐIỀU KHOẢN / BẢO MẬT) -->
+
+	<!-- MODAL THÔNG TIN FOOTER -->
     <div id="infoModal" class="fixed inset-0 bg-black/60 z-[100] hidden flex items-center justify-center p-4" onclick="closeInfoModal()">
         <div class="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
             <div class="bg-onetrip-gradient text-white px-6 py-4 flex justify-between items-center">
@@ -515,42 +547,31 @@
         </div>
     </div>
 	
-<!-- CHATBOX AI -->
-<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-    <!-- Cửa sổ Chat (Mặc định ẩn) -->
-    <div id="aiChatWindow" class="hidden mb-4 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden transform transition-all">
-        <!-- Chat Header -->
-        <div class="bg-onetrip-blue text-white p-3 flex justify-between items-center shadow-sm z-10 relative">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-robot text-onetrip-yellow text-xl"></i>
-                <span class="font-bold text-sm">Trợ lý OneTrip AI</span>
+    <!-- CHATBOX AI -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="aiChatWindow" class="hidden mb-4 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden transform transition-all">
+            <div class="bg-onetrip-blue text-white p-3 flex justify-between items-center shadow-sm z-10 relative">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-robot text-onetrip-yellow text-xl"></i>
+                    <span class="font-bold text-sm">Trợ lý OneTrip AI</span>
+                </div>
+                <button onclick="document.getElementById('aiChatWindow').classList.add('hidden')" class="text-white hover:text-red-400 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
-            <button onclick="document.getElementById('aiChatWindow').classList.add('hidden')" class="text-white hover:text-red-400 transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+            <div id="chatHistory" class="h-80 p-4 overflow-y-auto bg-gray-50 text-sm flex flex-col gap-3 scroll-smooth"></div>
+            <div class="p-3 bg-white border-t border-gray-200 flex gap-2">
+                <input type="text" id="chatInput" placeholder="Nhập yêu cầu..." class="w-full bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-onetrip-light">
+                <button onclick="sendUserMessage()" class="bg-onetrip-light text-white w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center hover:bg-blue-600 transition">
+                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                </button>
+            </div>
         </div>
-        
-        <!-- Vùng hiển thị tin nhắn -->
-        <div id="chatHistory" class="h-80 p-4 overflow-y-auto bg-gray-50 text-sm flex flex-col gap-3 scroll-smooth">
-            <!-- JavaScript sẽ tự động chèn kịch bản chat vào đây -->
-        </div>
-        
-        <!-- Chat Input -->
-        <div class="p-3 bg-white border-t border-gray-200 flex gap-2">
-            <input type="text" id="chatInput" placeholder="Nhập yêu cầu..." class="w-full bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-onetrip-light">
-            <button onclick="sendUserMessage()" class="bg-onetrip-light text-white w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center hover:bg-blue-600 transition">
-                <i class="fa-solid fa-paper-plane text-sm"></i>
-            </button>
-        </div>
+        <button onclick="document.getElementById('aiChatWindow').classList.toggle('hidden')" class="bg-white text-onetrip-blue w-14 h-14 rounded-full shadow-2xl hover:scale-110 transition-transform z-40 flex items-center justify-center text-2xl border-4 border-onetrip-yellow relative">
+            <i class="fa-solid fa-robot"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full animate-bounce">1</span>
+        </button>
     </div>
-    
-    <!-- Nút mở Chatbox có hiệu ứng thông báo tin nhắn mới -->
-    <button onclick="document.getElementById('aiChatWindow').classList.toggle('hidden')" class="bg-white text-onetrip-blue w-14 h-14 rounded-full shadow-2xl hover:scale-110 transition-transform z-40 flex items-center justify-center text-2xl border-4 border-onetrip-yellow relative">
-        <i class="fa-solid fa-robot"></i>
-        <!-- Chấm đỏ thông báo tin nhắn mới -->
-        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full animate-bounce">1</span>
-    </button>
-</div>
 
     <!-- TOAST NOTIFICATION -->
     <div id="toastMessage" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 translate-y-32 opacity-0 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-500 ease-in-out z-50 flex items-center gap-3">
@@ -562,6 +583,23 @@
 
     <!-- JAVASCRIPT & DATA -->
     <script>
+        // ================= HÀM TỰ ĐỘNG TÍNH NGÀY THỨ 6 TỚI =================
+        function getNextFridayText(lang) {
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0: CN, 5: Thứ 6
+            let daysUntilFriday = (5 - dayOfWeek + 7) % 7;
+            if (daysUntilFriday === 0 && today.getHours() >= 14) daysUntilFriday = 7;
+            const nextFri = new Date(today);
+            nextFri.setDate(today.getDate() + daysUntilFriday);
+            const dd = String(nextFri.getDate()).padStart(2, '0');
+            const mm = String(nextFri.getMonth() + 1).padStart(2, '0');
+            return lang === 'en' ? `Fri, ${dd}/${mm} • 12:00-14:00` : `Thứ 6, ${dd}/${mm} • 12h-14h`;
+        }
+
+        function formatMoney(vnd, lang) {
+            return lang === 'en' ? `$${(vnd / 25000).toFixed(0)}` : `${vnd.toLocaleString('vi-VN')}₫`;
+        }
+
         // ================= DANH SÁCH 34 TỈNH (DÙNG CHUNG) =================
         const cityList = [
             "Toàn quốc", 
@@ -579,72 +617,82 @@
         // ================= DỮ LIỆU ĐẦY ĐỦ (DATA) =================
         // 1. DATA ẨM THỰC
         const restaurantsData = [
-            { id: 'p1', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 9.5, price: 500000, img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Vietnam+House+Restaurant+Quận+1', phone: '028 3822 2226',
-              vi: { name: 'Vietnam House Restaurant', tag: 'Món Việt Hiện Đại', loc: 'TP.HCM', rate_txt: 'Tuyệt hảo', desc: 'Trải nghiệm ẩm thực đương đại cao cấp trong tòa nhà thuộc địa phục chế tại trung tâm Sài Gòn.' }, en: { name: 'Vietnam House', tag: 'Modern Vietnamese', loc: 'HCMC', rate_txt: 'Perfect', desc: 'Premium contemporary dining.' } },
-            { id: 'p2', type: 'premium', city: 'TP. Hà Nội', rating: 8.9, price: 400000, img: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Sen+Tây+Hồ', phone: '024 3719 9242',
-              vi: { name: 'Sen Tây Hồ - Buffet', tag: 'Fine Dining', loc: 'Hà Nội', rate_txt: 'Rất tốt', desc: 'Hệ thống buffet lớn nhất Việt Nam với hàng trăm món ngon truyền thống và hải sản.' }, en: { name: 'Sen Tay Ho', tag: 'Fine Dining', loc: 'Hanoi', rate_txt: 'Very good', desc: 'Vietnam largest buffet.' } },
-            { id: 'p3', type: 'premium', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 9.2, price: 450000, img: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Ngon+Villa+Đà+Nẵng', phone: '0236 3666 699',
-              vi: { name: 'Ngon Villa Đà Nẵng', tag: 'Hải Sản', loc: 'Đà Nẵng', rate_txt: 'Đỉnh cao', desc: 'Khám phá buffet gọi món All-You-Can-Eat đậm chất Việt trong không gian lãng mạn.' }, en: { name: 'Ngon Villa', tag: 'Seafood', loc: 'Da Nang', rate_txt: 'Excellent', desc: 'All-You-Can-Eat buffet.' } },
-            { id: 'p4', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 9.6, price: 1200000, img: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=The+Deck+Saigon', phone: '028 3744 6632',
-              vi: { name: 'The Deck Saigon', tag: 'Fusion Âu Á', loc: 'TP.HCM', rate_txt: 'Đẳng cấp', desc: 'Nhà hàng ven sông Sài Gòn, nơi lý tưởng ngắm hoàng hôn với thực đơn Fusion.' }, en: { name: 'The Deck Saigon', tag: 'Asian Fusion', loc: 'HCMC', rate_txt: 'Superb', desc: 'Riverside restaurant.' } },
+            { id: 'p1', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 9.5, price: 500000, salePrice: 375000, img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Vietnam+House+Restaurant+Quận+1', phone: '028 3822 2226',
+              vi: { name: 'Vietnam House Restaurant', tag: 'Món Việt Hiện Đại', loc: 'TP.HCM', rate_txt: 'Tuyệt hảo', perk: 'Giảm 25% + Tặng Welcome Drink', desc: 'Trải nghiệm ẩm thực đương đại cao cấp trong tòa nhà thuộc địa phục chế tại trung tâm Sài Gòn.' },
+              en: { name: 'Vietnam House', tag: 'Modern Vietnamese', loc: 'HCMC', rate_txt: 'Perfect', perk: '25% Off + Free Welcome Drink', desc: 'Premium contemporary dining.' } },
+            { id: 'p2', type: 'premium', city: 'TP. Hà Nội', rating: 8.9, price: 400000, salePrice: 320000, img: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Sen+Tây+Hồ', phone: '024 3719 9242',
+              vi: { name: 'Sen Tây Hồ - Buffet', tag: 'Fine Dining', loc: 'Hà Nội', rate_txt: 'Rất tốt', perk: 'Giảm 20% + Đi 5 tính tiền 4', desc: 'Hệ thống buffet lớn nhất Việt Nam với hàng trăm món ngon truyền thống và hải sản.' },
+              en: { name: 'Sen Tay Ho', tag: 'Fine Dining', loc: 'Hanoi', rate_txt: 'Very good', perk: '20% Off + Dine 5 Pay 4', desc: 'Vietnam largest buffet.' } },
+            { id: 'p3', type: 'premium', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 9.2, price: 450000, salePrice: 340000, img: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Ngon+Villa+Đà+Nẵng', phone: '0236 3666 699',
+              vi: { name: 'Ngon Villa Đà Nẵng', tag: 'Hải Sản', loc: 'Đà Nẵng', rate_txt: 'Đỉnh cao', perk: 'Giảm 24% + Tặng tráng miệng', desc: 'Khám phá buffet gọi món All-You-Can-Eat đậm chất Việt trong không gian lãng mạn.' },
+              en: { name: 'Ngon Villa', tag: 'Seafood', loc: 'Da Nang', rate_txt: 'Excellent', perk: '24% Off + Free Dessert', desc: 'All-You-Can-Eat buffet.' } },
+            { id: 'p4', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 9.6, price: 1200000, salePrice: 890000, img: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=The+Deck+Saigon', phone: '028 3744 6632',
+              vi: { name: 'The Deck Saigon', tag: 'Fusion Âu Á', loc: 'TP.HCM', rate_txt: 'Đẳng cấp', perk: 'Giảm 26% + Bàn view sông VIP', desc: 'Nhà hàng ven sông Sài Gòn, nơi lý tưởng ngắm hoàng hôn với thực đơn Fusion.' },
+              en: { name: 'The Deck Saigon', tag: 'Asian Fusion', loc: 'HCMC', rate_txt: 'Superb', perk: '26% Off + VIP River View', desc: 'Riverside restaurant.' } },
             
-            { id: 'r1', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.5, price: 75000, img: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '028 3829 7943',
-              vi: { name: 'Phở Hòa Pasteur', loc: 'TP.HCM', desc: 'Quán phở lâu đời bậc nhất Sài Gòn với hương vị nước dùng đậm đà.' }, en: { name: 'Pho Hoa Pasteur', loc: 'HCMC', desc: 'Oldest Pho in Saigon.' } },
-            { id: 'r2', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.2, price: 60000, img: 'https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0254 3523 465',
-              vi: { name: 'Bánh Khọt Gốc Vú Sữa', loc: 'Vũng Tàu', desc: 'Bánh khọt tôm tươi giòn rụm nổi tiếng, cuộn cùng rau sống tươi xanh.' }, en: { name: 'Banh Khot Goc Vu Sua', loc: 'Vung Tau', desc: 'Famous crispy pancakes.' } },
-            { id: 'r3', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.6, price: 45000, img: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '090 123 4567',
-              vi: { name: 'Cơm Tấm Ba Ghi', loc: 'TP.HCM', desc: 'Sườn nướng than hoa thơm lừng, chuẩn vị người Sài Gòn.' }, en: { name: 'Ba Ghi Broken Rice', loc: 'HCMC', desc: 'Charcoal-grilled ribs.' } },
-            { id: 'r4', type: 'recommended', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.4, price: 40000, img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0236 3865 651',
-              vi: { name: 'Mì Quảng Bà Vị', loc: 'Đà Nẵng', desc: 'Tô mì đậm đà tình quê miền Trung, sợi mì dai ngon tẩm ướp kỹ.' }, en: { name: 'Ba Vi Mi Quang', loc: 'Da Nang', desc: 'Central Vietnam flavors.' } },
-            { id: 'r5', type: 'recommended', city: 'TP. Hà Nội', rating: 4.8, price: 60000, img: 'http://adormusic.s3.us-east-2.amazonaws.com/wp-content/uploads/2023/08/02041935/Bu%CC%81n-cha%CC%89-Hu%CC%9Bo%CC%9Bng-Lie%CC%82n-1.jpeg', map_url: '#', phone: '024 3943 4106',
-              vi: { name: 'Bún Chả Hương Liên (Obama)', loc: 'Hà Nội', desc: 'Quán bún chả từng phục vụ cựu Tổng thống Mỹ, chả nướng thơm mềm.' }, en: { name: 'Huong Lien Bun Cha', loc: 'Hanoi', desc: 'Served President Obama.' } },
-            { id: 'r6', type: 'recommended', city: 'TP. Hà Nội', rating: 4.7, price: 65000, img: 'https://nhandan.vn/special/chuyen-pho-thin-ha-noi/assets/hbdP4w9mKl/e18d98eb496e9330ca7f-1677386689100-16773866892371645639692-1920x1440.jpg', map_url: '#', phone: '098 765 4321',
-              vi: { name: 'Phở Thìn Lò Đúc', loc: 'Hà Nội', desc: 'Đặc trưng với món phở bò tái lăn ngập hành lá thơm nức mũi.' }, en: { name: 'Thin Pho Lo Duc', loc: 'Hanoi', desc: 'Stir-fried rare beef Pho.' } }
+            { id: 'r1', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.5, price: 75000, salePrice: 55000, img: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '028 3829 7943',
+              vi: { name: 'Phở Hòa Pasteur', loc: 'TP.HCM', perk: 'Giảm 27% + Tặng quẩy giòn', desc: 'Quán phở lâu đời bậc nhất Sài Gòn với hương vị nước dùng đậm đà.' },
+              en: { name: 'Pho Hoa Pasteur', loc: 'HCMC', perk: '27% Off + Free Breadsticks', desc: 'Oldest Pho in Saigon.' } },
+            { id: 'r2', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.2, price: 60000, salePrice: 45000, img: 'https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0254 3523 465',
+              vi: { name: 'Bánh Khọt Gốc Vú Sữa', loc: 'Vũng Tàu', perk: 'Giảm 25% + Trà tắc miễn phí', desc: 'Bánh khọt tôm tươi giòn rụm nổi tiếng, cuộn cùng rau sống tươi xanh.' },
+              en: { name: 'Banh Khot Goc Vu Sua', loc: 'Vung Tau', perk: '25% Off + Free Iced Tea', desc: 'Famous crispy pancakes.' } },
+            { id: 'r3', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.6, price: 45000, salePrice: 35000, img: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '090 123 4567',
+              vi: { name: 'Cơm Tấm Ba Ghi', loc: 'TP.HCM', perk: 'Giảm 22% + Tặng canh rong biển', desc: 'Sườn nướng than hoa thơm lừng, chuẩn vị người Sài Gòn.' },
+              en: { name: 'Ba Ghi Broken Rice', loc: 'HCMC', perk: '22% Off + Free Soup', desc: 'Charcoal-grilled ribs.' } },
+            { id: 'r4', type: 'recommended', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.4, price: 40000, salePrice: 30000, img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0236 3865 651',
+              vi: { name: 'Mì Quảng Bà Vị', loc: 'Đà Nẵng', perk: 'Giảm 25% + Tặng bánh tráng nướng', desc: 'Tô mì đậm đà tình quê miền Trung, sợi mì dai ngon tẩm ướp kỹ.' },
+              en: { name: 'Ba Vi Mi Quang', loc: 'Da Nang', perk: '25% Off + Free Rice Cracker', desc: 'Central Vietnam flavors.' } },
+            { id: 'r5', type: 'recommended', city: 'TP. Hà Nội', rating: 4.8, price: 60000, salePrice: 45000, img: 'http://adormusic.s3.us-east-2.amazonaws.com/wp-content/uploads/2023/08/02041935/Bu%CC%81n-cha%CC%89-Hu%CC%9Bo%CC%9Bng-Lie%CC%82n-1.jpeg', map_url: '#', phone: '024 3943 4106',
+              vi: { name: 'Bún Chả Hương Liên (Obama)', loc: 'Hà Nội', perk: 'Giảm 25% + Tặng nem hải sản', desc: 'Quán bún chả từng phục vụ cựu Tổng thống Mỹ, chả nướng thơm mềm.' },
+              en: { name: 'Huong Lien Bun Cha', loc: 'Hanoi', perk: '25% Off + Free Spring Roll', desc: 'Served President Obama.' } },
+            { id: 'r6', type: 'recommended', city: 'TP. Hà Nội', rating: 4.7, price: 65000, salePrice: 49000, img: 'https://nhandan.vn/special/chuyen-pho-thin-ha-noi/assets/hbdP4w9mKl/e18d98eb496e9330ca7f-1677386689100-16773866892371645639692-1920x1440.jpg', map_url: '#', phone: '098 765 4321',
+              vi: { name: 'Phở Thìn Lò Đúc', loc: 'Hà Nội', perk: 'Giảm 25% + Tặng trà đá/quẩy', desc: 'Đặc trưng với món phở bò tái lăn ngập hành lá thơm nức mũi.' },
+              en: { name: 'Thin Pho Lo Duc', loc: 'Hanoi', perk: '25% Off + Free Iced Tea', desc: 'Stir-fried rare beef Pho.' } }
         ];
 
         // 2. DATA LƯU TRÚ
         const staysData = [
-            { id: 's1', type: 'premium', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 9.2, price: 9500000, img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80', name: 'InterContinental Danang', loc: 'Sơn Trà, Đà Nẵng', desc: 'Resort sang trọng bên bờ biển.' },
-            { id: 's2', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 8.9, price: 4200000, img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80', name: 'Vinpearl Resort Phú Quốc', loc: 'Bãi Dài, Phú Quốc', desc: 'Nghỉ dưỡng tuyệt vời cho gia đình.' },
-            { id: 's3', type: 'premium', city: 'Khánh Hòa (Khánh Hòa + Ninh Thuận)', rating: 9.0, price: 5500000, img: 'https://eholiday.vn/wp-content/uploads/2023/05/Khu-nghi-duong-Amiana-Nha-Trang-4.jpg', name: 'Amiana Resort Nha Trang', loc: 'Nha Trang', desc: 'Resort ẩn mình với bãi biển riêng.' },
+            { id: 's1', type: 'premium', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 9.2, price: 9500000, salePrice: 6990000, img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80', name: 'InterContinental Danang', loc: 'Sơn Trà, Đà Nẵng', perkVi: 'Giảm 26% + Đưa đón sân bay & Buffet sáng', perkEn: '26% Off + Airport Transfer & Breakfast', desc: 'Resort sang trọng bên bờ biển.' },
+            { id: 's2', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 8.9, price: 4200000, salePrice: 3150000, img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80', name: 'Vinpearl Resort Phú Quốc', loc: 'Bãi Dài, Phú Quốc', perkVi: 'Giảm 25% + Tặng vé VinWonders 2 khách', perkEn: '25% Off + Free VinWonders Tickets', desc: 'Nghỉ dưỡng tuyệt vời cho gia đình.' },
+            { id: 's3', type: 'premium', city: 'Khánh Hòa (Khánh Hòa + Ninh Thuận)', rating: 9.0, price: 5500000, salePrice: 3990000, img: 'https://eholiday.vn/wp-content/uploads/2023/05/Khu-nghi-duong-Amiana-Nha-Trang-4.jpg', name: 'Amiana Resort Nha Trang', loc: 'Nha Trang', perkVi: 'Giảm 27% + Tặng tắm bùn khoáng 60p', perkEn: '27% Off + Free 60m Mud Bath', desc: 'Resort ẩn mình với bãi biển riêng.' },
             
-            { id: 'sr1', type: 'recommended', city: 'Lâm Đồng (Đắk Nông + Lâm Đồng + Bình Thuận)', rating: 8.5, price: 1200000, img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80', name: 'Terracotta Hotel', loc: 'Hồ Tuyền Lâm, Đà Lạt', desc: 'Khách sạn giữa rừng thông lãng mạn.' },
-            { id: 'sr2', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 8.2, price: 850000, img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80', name: 'Malibu Hotel', loc: 'Thắng Tam, Vũng Tàu', desc: 'Khách sạn hiện đại gần biển.' },
-            { id: 'sr3', type: 'recommended', city: 'TP. Hà Nội', rating: 8.8, price: 1500000, img: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80', name: 'Hanoi La Siesta', loc: 'Hoàn Kiếm, Hà Nội', desc: 'Khách sạn boutique phố cổ.' },
-            { id: 'sr4', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 8.7, price: 1800000, img: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600&q=80', name: 'Liberty Central', loc: 'Quận 1, TP.HCM', desc: 'Lưu trú trung tâm tiện nghi.' }
+            { id: 'sr1', type: 'recommended', city: 'Lâm Đồng (Đắk Nông + Lâm Đồng + Bình Thuận)', rating: 8.5, price: 1200000, salePrice: 890000, img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80', name: 'Terracotta Hotel', loc: 'Hồ Tuyền Lâm, Đà Lạt', perkVi: 'Giảm 26% + Miễn phí bữa sáng buffet', perkEn: '26% Off + Free Buffet Breakfast', desc: 'Khách sạn giữa rừng thông lãng mạn.' },
+            { id: 'sr2', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 8.2, price: 850000, salePrice: 640000, img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80', name: 'Malibu Hotel', loc: 'Thắng Tam, Vũng Tàu', perkVi: 'Giảm 25% + Nâng hạng phòng view biển', perkEn: '25% Off + Free Sea-view Upgrade', desc: 'Khách sạn hiện đại gần biển.' },
+            { id: 'sr3', type: 'recommended', city: 'TP. Hà Nội', rating: 8.8, price: 1500000, salePrice: 1120000, img: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80', name: 'Hanoi La Siesta', loc: 'Hoàn Kiếm, Hà Nội', perkVi: 'Giảm 25% + Tặng trà chiều phố cổ', perkEn: '25% Off + Free Afternoon Tea', desc: 'Khách sạn boutique phố cổ.' },
+            { id: 'sr4', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 8.7, price: 1800000, salePrice: 1350000, img: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600&q=80', name: 'Liberty Central', loc: 'Quận 1, TP.HCM', perkVi: 'Giảm 25% + Check-out muộn đến 14h', perkEn: '25% Off + Late Check-out 2PM', desc: 'Lưu trú trung tâm tiện nghi.' }
         ];
 
-        // 3. DATA GIẢI TRÍ (Mới)
+        // 3. DATA GIẢI TRÍ
         const entData = [
-            { id: 'e1', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.8, price: 600000, reviews: 3120,
+            { id: 'e1', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.8, price: 600000, salePrice: 450000, reviews: 3120,
               img: 'https://images.unsplash.com/photo-1575485670541-824ff288aaf8?auto=format&fit=crop&w=600&q=80',
-              vi: { title: 'Vé VinWonders Nam Hội An', loc: 'Quảng Nam', type: 'Công viên giải trí', desc: 'Tổ hợp vui chơi giải trí và văn hóa đa trải nghiệm lớn nhất miền Trung.' },
-              en: { title: 'VinWonders Nam Hoi An', loc: 'Quang Nam', type: 'Theme Park', desc: 'The biggest entertainment complex in Central Vietnam.' }
+              vi: { title: 'Vé VinWonders Nam Hội An', loc: 'Quảng Nam', type: 'Công viên giải trí', perk: 'Giảm 25% + Tặng voucher ăn trưa 100k', desc: 'Tổ hợp vui chơi giải trí và văn hóa đa trải nghiệm lớn nhất miền Trung.' },
+              en: { title: 'VinWonders Nam Hoi An', loc: 'Quang Nam', type: 'Theme Park', perk: '25% Off + 100k Food Voucher', desc: 'The biggest entertainment complex in Central Vietnam.' }
             },
-            { id: 'e2', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.9, price: 950000, reviews: 5432,
+            { id: 'e2', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.9, price: 950000, salePrice: 740000, reviews: 5432,
               img: 'https://image.kkday.com/v2/image/get/h_650%2Cc_fit/s1.kkday.com/product_37521/20201010112218_xr549/jpg',
-              vi: { title: 'Vé Cáp Treo Sun World Bà Nà Hills', loc: 'Đà Nẵng', type: 'Tham quan', desc: 'Khám phá Cầu Vàng, Làng Pháp và trải nghiệm cáp treo đạt kỷ lục Guinness.' },
-              en: { title: 'Sun World Ba Na Hills Ticket', loc: 'Da Nang', type: 'Sightseeing', desc: 'Discover Golden Bridge and French Village.' }
+              vi: { title: 'Vé Cáp Treo Sun World Bà Nà Hills', loc: 'Đà Nẵng', type: 'Tham quan', perk: 'Giảm 22% + Lối đi ưu tiên WOW Pass', desc: 'Khám phá Cầu Vàng, Làng Pháp và trải nghiệm cáp treo đạt kỷ lục Guinness.' },
+              en: { title: 'Sun World Ba Na Hills Ticket', loc: 'Da Nang', type: 'Sightseeing', perk: '22% Off + WOW Pass Fast-track', desc: 'Discover Golden Bridge and French Village.' }
             },
-            { id: 'e3', city: 'Quảng Ninh', rating: 4.7, price: 1200000, reviews: 1540,
+            { id: 'e3', city: 'Quảng Ninh', rating: 4.7, price: 1200000, salePrice: 890000, reviews: 1540,
               img: 'https://www.halongbaycruises.com.vn/images/tour/items/img1/sea-octopus-president-cruise.jpg',
-              vi: { title: 'Tour Du Thuyền Vịnh Hạ Long Trong Ngày', loc: 'Quảng Ninh', type: 'Tour', desc: 'Thưởng ngoạn kỳ quan thế giới, chèo kayak và thăm Hang Sửng Sốt.' },
-              en: { title: 'Ha Long Bay Day Cruise', loc: 'Quang Ninh', type: 'Tour', desc: 'Cruise the world wonder, kayak and visit caves.' }
+              vi: { title: 'Tour Du Thuyền Vịnh Hạ Long Trong Ngày', loc: 'Quảng Ninh', type: 'Tour', perk: 'Giảm 26% + Miễn phí chèo Kayak', desc: 'Thưởng ngoạn kỳ quan thế giới, chèo kayak và thăm Hang Sửng Sốt.' },
+              en: { title: 'Ha Long Bay Day Cruise', loc: 'Quang Ninh', type: 'Tour', perk: '26% Off + Free Kayaking', desc: 'Cruise the world wonder, kayak and visit caves.' }
             },
-            { id: 'e4', city: 'Lâm Đồng (Đắk Nông + Lâm Đồng + Bình Thuận)', rating: 4.6, price: 350000, reviews: 890,
+            { id: 'e4', city: 'Lâm Đồng (Đắk Nông + Lâm Đồng + Bình Thuận)', rating: 4.6, price: 350000, salePrice: 260000, reviews: 890,
               img: 'https://danatravel.vn/data/images/du-lich-mao-hiem-ivivu_com-3.jpg',
-              vi: { title: 'Đu Dây Zipline Datanla', loc: 'Đà Lạt', type: 'Thể thao ngoài trời', desc: 'Trải nghiệm hành trình mạo hiểm xuyên rừng thông dài nhất châu Á.' },
-              en: { title: 'Datanla Zipline Adventure', loc: 'Da Lat', type: 'Outdoor', desc: 'The longest forest zipline in Asia.' }
+              vi: { title: 'Đu Dây Zipline Datanla', loc: 'Đà Lạt', type: 'Thể thao ngoài trời', perk: 'Giảm 26% + Tặng gói chụp ảnh hành trình', desc: 'Trải nghiệm hành trình mạo hiểm xuyên rừng thông dài nhất châu Á.' },
+              en: { title: 'Datanla Zipline Adventure', loc: 'Da Lat', type: 'Outdoor', perk: '26% Off + Free Action Photos', desc: 'The longest forest zipline in Asia.' }
             },
-            { id: 'e5', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.8, price: 600000, reviews: 2100,
+            { id: 'e5', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.8, price: 600000, salePrice: 450000, reviews: 2100,
               img: 'https://showantuonghoian.com/Content/img/HoiAn/ku-uc-hoi-an-an-tuong2.jpg',
-              vi: { title: 'Show Diễn Thực Cảnh Ký Ức Hội An', loc: 'Hội An', type: 'Biểu diễn', desc: 'Chương trình biểu diễn nghệ thuật thực cảnh đẹp nhất thế giới (theo Reuters).' },
-              en: { title: 'Hoi An Memories Show', loc: 'Hoi An', type: 'Show', desc: 'The most beautiful real-world performance show.' }
+              vi: { title: 'Show Diễn Thực Cảnh Ký Ức Hội An', loc: 'Hội An', type: 'Biểu diễn', perk: 'Giảm 25% + Nâng hạng ghế ECO lên HIGH', desc: 'Chương trình biểu diễn nghệ thuật thực cảnh đẹp nhất thế giới (theo Reuters).' },
+              en: { title: 'Hoi An Memories Show', loc: 'Hoi An', type: 'Show', perk: '25% Off + Free Seat Upgrade', desc: 'The most beautiful real-world performance show.' }
             },
-            { id: 'e6', city: 'Lào Cai (Lào Cai + Yên Bái)', rating: 4.9, price: 850000, reviews: 4200,
+            { id: 'e6', city: 'Lào Cai (Lào Cai + Yên Bái)', rating: 4.9, price: 850000, salePrice: 650000, reviews: 4200,
               img: 'https://bizweb.dktcdn.net/100/514/927/products/combo-ve-cap-treo-sunworld-fansipan-legend-ve-muong-hoa-phan-van-travel-ed36fd7e-d8d3-4d36-8aea-9bd2c37feb5a.jpg?v=1759724119090',
-              vi: { title: 'Vé Cáp Treo Fansipan Legend', loc: 'Sa Pa', type: 'Tham quan', desc: 'Chinh phục nóc nhà Đông Dương bằng cáp treo 3 dây hiện đại nhất thế giới.' },
-              en: { title: 'Fansipan Legend Cable Car', loc: 'Sa Pa', type: 'Sightseeing', desc: 'Conquer the Roof of Indochina.' }
+              vi: { title: 'Vé Cáp Treo Fansipan Legend', loc: 'Sa Pa', type: 'Tham quan', perk: 'Giảm 24% + Tặng vé tàu hỏa Mường Hoa', desc: 'Chinh phục nóc nhà Đông Dương bằng cáp treo 3 dây hiện đại nhất thế giới.' },
+              en: { title: 'Fansipan Legend Cable Car', loc: 'Sa Pa', type: 'Sightseeing', perk: '24% Off + Free Muong Hoa Train', desc: 'Conquer the Roof of Indochina.' }
             }
         ];
 
@@ -660,7 +708,7 @@
                 e_rec_title: "Gợi ý trải nghiệm", e_rec_desc: "Các hoạt động giải trí nổi bật nhất", e_found_text: "hoạt động được tìm thấy",
                 register: "Đăng ký", login: "Đăng nhập", adults: "Người lớn", children: "Trẻ em", rooms: "Phòng", found_text_1: "Đã tìm thấy", found_text_2: "địa điểm", s_found_text: "chỗ nghỉ được tìm thấy",
                 premium_title: "Đặt trước", premium_desc: "Trải nghiệm ẩm thực tinh tế, sang trọng", recommended_title: "Đề xuất", recommended_desc: "Thưởng thức chuẩn vị địa phương", s_premium_desc: "Trải nghiệm lưu trú sang trọng tại các resort và khách sạn 5 sao",
-                offers_title: "Ưu đãi hấp dẫn", promo_exclusive: "Độc quyền OneTrip", promo_1_title: "Weekend Sale", promo_1_desc: "Áp dụng cho mọi nhà hàng khi đặt bàn vào Thứ 6, Thứ 7, Chủ nhật.", promo_1_btn: "Nhận mã: WEEKEND20",
+                offers_title: "Ưu đãi hấp dẫn", promo_exclusive: "Độc quyền OneTrip", promo_1_title: "Super Friday Sale", promo_1_desc: "Giảm tới 27% mọi nhà hàng khi đặt bàn khung giờ 12h-14h Thứ 6.", promo_1_btn: "Nhận mã: FRIDAYSALE",
                 promo_bday: "Ưu đãi Sinh nhật", promo_2_title: "Tặng Món Tráng Miệng", promo_2_desc: "Nhận ngay set bánh ngọt miễn phí trong tháng sinh nhật của bạn.", promo_explore: "Khám phá ngay",
                 promo_group: "Đặt tiệc Nhóm", promo_3_title: "Đi 5 Tính Tiền 4", promo_3_desc: "Ưu đãi cực hời cho nhóm bạn và gia đình tại chuỗi Buffet.", promo_list: "Xem danh sách",
                 s_promo_stay: "Lưu Trú Dài Ngày", s_promo_transfer: "Đưa đón sân bay",
@@ -668,7 +716,6 @@
                 s_promo_2_title: "Ở 3 Đêm Tính 2 Đêm", s_promo_2_desc: "Tận hưởng kỳ nghỉ trọn vẹn với ưu đãi đêm miễn phí.",
                 s_promo_3_title: "Miễn Phí Đưa Đón", s_promo_3_desc: "Dành cho các booking resort 5 sao tại Phú Quốc & Nha Trang.",
                 toast_search: "Đang xử lý yêu cầu của bạn...",
-                // TỪ KHÓA BỔ SUNG: BỘ LỌC, MODAL, GIẢI TRÍ
                 s_filter_title: "Lọc theo", e_filter_title: "Lọc hoạt động",
                 e_f_park: "Công viên giải trí", e_f_tour: "Tour tham quan", e_f_show: "Biểu diễn Văn hóa",
                 m_book: "Đặt bàn ngay", m_map_btn: "Xem bản đồ", alert_dev: "Tính năng đang được phát triển!",
@@ -686,7 +733,7 @@
                 e_rec_title: "Recommended Experiences", e_rec_desc: "The most popular entertainment activities", e_found_text: "activities found",
                 register: "Register", login: "Login", adults: "Adults", children: "Children", rooms: "Rooms", found_text_1: "Found", found_text_2: "places", s_found_text: "properties found",
                 premium_title: "Reservations", premium_desc: "Experience exquisite, fine dining", recommended_title: "Recommended", recommended_desc: "Enjoy authentic local flavors", s_premium_desc: "Experience luxury stays at 5-star resorts",
-                offers_title: "Special Offers", promo_exclusive: "OneTrip Exclusive", promo_1_title: "Weekend Sale", promo_1_desc: "Applied for all restaurants when booking on Fri, Sat, Sun.", promo_1_btn: "Get code: WEEKEND20",
+                offers_title: "Special Offers", promo_exclusive: "OneTrip Exclusive", promo_1_title: "Super Friday Sale", promo_1_desc: "Up to 27% off all restaurants during 12:00-14:00 every Friday.", promo_1_btn: "Get code: FRIDAYSALE",
                 promo_bday: "Birthday Treat", promo_2_title: "Free Dessert", promo_2_desc: "Get a free pastry set during your birthday month.", promo_explore: "Explore now",
                 promo_group: "Group Dining", promo_3_title: "Dine 5 Pay 4", promo_3_desc: "Great deal for groups and families at Buffet chains.", promo_list: "View list",
                 s_promo_stay: "Long Stay Offer", s_promo_transfer: "Airport Transfer",
@@ -694,28 +741,23 @@
                 s_promo_2_title: "Stay 3 Pay 2", s_promo_2_desc: "Enjoy your vacation fully with a free night.",
                 s_promo_3_title: "Free Transfer", s_promo_3_desc: "For 5-star resort bookings in Phu Quoc & Nha Trang.",
                 toast_search: "Processing your request...",
-                // TỪ KHÓA BỔ SUNG: BỘ LỌC, MODAL, GIẢI TRÍ
                 s_filter_title: "Filter by", e_filter_title: "Filter activities",
                 e_f_park: "Theme Parks", e_f_tour: "Tours", e_f_show: "Cultural Shows",
                 m_book: "Book Now", m_map_btn: "View Map", alert_dev: "Feature under development!",
                 no_stays: "No properties found.", price_note: "Price per night, 2 adults",
                 no_ent: "No matching experiences found.", reviews: "reviews", instant: "Instant Confirmation", from_price: "From",
                 chat_title: "OneTrip AI Assistant", chat_placeholder: "Type your request...",
-				u_adults: "adults", u_children: "children", u_rooms: "rooms",
+				u_adults: "adults", u_children: "children", u_rooms: "rooms"
             }
         };
 
         function setLanguage(lang) {
             currentLang = lang;
             const t = staticTranslations[lang];
-            
-            // 1. Dịch các thẻ có sẵn data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) el.textContent = t[key];
             });
-            
-            // 2. Dịch các Sidebar Bộ Lọc & Các nút ẩn trong Modal bằng JS
             const sFilterTitle = document.querySelector('#s-results-view .sticky h3');
             if(sFilterTitle) sFilterTitle.textContent = t.s_filter_title;
             const eFilterTitle = document.querySelector('#e-results-view .sticky h3');
@@ -730,14 +772,11 @@
             if(mBook) mBook.textContent = t.m_book;
             const mMap = document.querySelector('#m_map span');
             if(mMap) mMap.textContent = t.m_map_btn;
-            
-            // 3. Cập nhật Chatbox Header & Input
             const chatTitle = document.querySelector('#aiChatWindow .bg-onetrip-blue span');
             if(chatTitle) chatTitle.textContent = t.chat_title;
             const chatInput = document.getElementById('chatInput');
             if(chatInput) chatInput.placeholder = t.chat_placeholder;
 
-            // 4. Update Inputs & Currency
             const currencyBtn = document.getElementById('currencyBtn');
             if (currencyBtn) currencyBtn.textContent = lang === 'en' ? 'USD' : 'VND';
             ['locationInput', 's_locInput', 'e_locInput'].forEach(id => {
@@ -753,12 +792,7 @@
                 }
             });
             if(typeof updateAllGuestTexts === 'function') updateAllGuestTexts();
-            // Re-render Data
-            if(typeof renderFood === 'function') renderFood(); 
-            if(typeof renderStays === 'function') renderStays(); 
-            if(typeof renderEnt === 'function') renderEnt();
-            
-            // Reset Chatbox để AI nói ngôn ngữ mới
+            renderFood(); renderStays(); renderEnt();
             if(typeof initChat === 'function') initChat();
         }
 
@@ -807,34 +841,58 @@
         // ================= RENDER DỮ LIỆU ĐẦY ĐỦ =================
         let filterFoodCity = "Toàn quốc";
         function renderFood() {
+            const friLabel = getNextFridayText(currentLang);
             const prems = restaurantsData.filter(r => r.type === 'premium');
             document.getElementById('premium-container').innerHTML = prems.slice(0,3).map(item => {
                 const data = item[currentLang];
                 let starsHTML = ''; for(let i=0; i<5; i++) starsHTML += `<i class="fa-solid fa-star${i>=Math.floor(item.rating)? (item.rating%1!==0 && i===Math.floor(item.rating)?'-half-stroke':'-regular border-none opacity-30'):''}"></i>`;
                 return `
-                <div class="relative rounded-lg overflow-hidden h-72 card-hover cursor-pointer group bg-white shadow" onclick="openModal('${item.id}')">
-                    <img src="${item.img}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-2 right-2 bg-onetrip-blue text-white text-xs font-bold px-2 py-1 rounded">${data.tag}</div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg text-gray-800">${data.name}</h3>
-                        <span class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot mr-1"></i> ${data.loc}</span>
-                        <div class="mt-2 flex items-center text-onetrip-yellow text-sm">${starsHTML} <span class="text-gray-600 ml-2 font-medium">${item.rating} ${data.rate_txt}</span></div>
+                <div class="relative rounded-xl overflow-hidden card-hover cursor-pointer group bg-white shadow border border-gray-100 flex flex-col justify-between" onclick="openModal('${item.id}')">
+                    <div>
+                        <div class="relative h-44 overflow-hidden">
+                            <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-2 right-2 bg-onetrip-blue text-white text-xs font-bold px-2.5 py-1 rounded shadow">${data.tag}</div>
+                            <div class="absolute bottom-2 left-2 bg-amber-500 text-white text-[11px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
+                                <i class="fa-solid fa-gift"></i> ${data.perk}
+                            </div>
+                        </div>
+                        <div class="p-4 pb-2">
+                            <h3 class="font-bold text-lg text-gray-800 line-clamp-1">${data.name}</h3>
+                            <span class="text-gray-500 text-xs"><i class="fa-solid fa-location-dot mr-1"></i> ${data.loc}</span>
+                            <div class="mt-1.5 flex items-center text-onetrip-yellow text-xs">${starsHTML} <span class="text-gray-600 ml-2 font-medium">${item.rating} ${data.rate_txt}</span></div>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 pt-2 border-t border-gray-100 bg-red-50/40">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xs text-gray-400 line-through">${formatMoney(item.price, currentLang)}</span>
+                            <span class="text-lg font-extrabold text-food-red">${formatMoney(item.salePrice, currentLang)}</span>
+                        </div>
+                        <p class="text-[11px] font-semibold text-orange-600 mt-0.5"><i class="fa-solid fa-bolt mr-1"></i>(${friLabel})</p>
                     </div>
                 </div>`;
             }).join('');
 
             const recTpl = (item) => {
-                const data = item[currentLang]; const priceText = currentLang === 'en' ? `$${(item.price/25000).toFixed(0)}` : `~ ${item.price/1000}k`;
+                const data = item[currentLang];
                 return `
-                <div class="cursor-pointer group bg-white rounded-lg p-3 shadow-sm border border-gray-100 card-hover flex flex-col justify-between" onclick="openModal('${item.id}')">
+                <div class="cursor-pointer group bg-white rounded-xl p-3 shadow-sm border border-gray-100 card-hover flex flex-col justify-between" onclick="openModal('${item.id}')">
                     <div>
-                        <div class="rounded-lg overflow-hidden h-32 mb-3 relative"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>
-                        <h3 class="font-bold text-gray-800 group-hover:text-food-red transition line-clamp-1">${data.name}</h3>
-                        <span class="text-xs text-gray-500 mt-1 block">${data.loc} • ${data.desc.substring(0, 30)}...</span>
+                        <div class="rounded-lg overflow-hidden h-32 mb-2.5 relative">
+                            <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute top-1.5 right-1.5 text-[11px] text-onetrip-yellow font-bold bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-star"></i> ${item.rating}</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-food-red transition line-clamp-1 text-sm md:text-base">${data.name}</h3>
+                        <span class="text-xs text-gray-500 mt-0.5 block line-clamp-1">${data.loc} • ${data.desc}</span>
+                        <div class="mt-2 bg-orange-50 border border-orange-200 text-orange-700 text-[11px] font-semibold px-2 py-1 rounded flex items-center gap-1">
+                            <i class="fa-solid fa-tag text-orange-500"></i> <span class="line-clamp-1">${data.perk}</span>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
-                        <p class="text-food-red font-bold text-sm">${priceText}</p>
-                        <div class="text-xs text-onetrip-yellow font-bold bg-yellow-50 px-2 py-1 rounded"><i class="fa-solid fa-star"></i> ${item.rating}</div>
+                    <div class="mt-3 pt-2.5 border-t border-gray-100">
+                        <div class="flex items-baseline gap-1.5 flex-wrap">
+                            <span class="text-xs text-gray-400 line-through">${formatMoney(item.price, currentLang)}</span>
+                            <span class="text-food-red font-extrabold text-base">${formatMoney(item.salePrice, currentLang)}</span>
+                        </div>
+                        <p class="text-[11px] font-semibold text-red-600 mt-0.5">(${friLabel})</p>
                     </div>
                 </div>`;
             };
@@ -850,30 +908,60 @@
 
         let filterStaysCity = "Toàn quốc";
         function renderStays() {
+            const friLabel = getNextFridayText(currentLang);
             const prems = staysData.filter(d => d.type === 'premium');
-            document.getElementById('s_premium_container').innerHTML = prems.slice(0,3).map(p => `
-                <div class="relative rounded-lg overflow-hidden h-72 cursor-pointer shadow bg-white border card-hover group">
-                    <img src="${p.img}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute top-2 right-2 bg-onetrip-blue text-white w-8 h-8 flex items-center justify-center font-bold text-sm rounded">${p.rating}</div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg text-gray-800 line-clamp-1">${p.name}</h3>
-                        <div class="flex justify-between items-end mt-1"><span class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot mr-1"></i> ${p.loc}</span><span class="font-bold text-food-red">${currentLang==='en'?'~ $'+(p.price/25000).toFixed(0):'~ '+(p.price/1000)+'k'}</span></div>
+            document.getElementById('s_premium_container').innerHTML = prems.slice(0,3).map(p => {
+                const perk = currentLang === 'en' ? p.perkEn : p.perkVi;
+                return `
+                <div class="relative rounded-xl overflow-hidden cursor-pointer shadow bg-white border border-gray-100 card-hover group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44 overflow-hidden">
+                            <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-2 right-2 bg-onetrip-blue text-white w-8 h-8 flex items-center justify-center font-bold text-sm rounded shadow">${p.rating}</div>
+                            <div class="absolute bottom-2 left-2 bg-indigo-600 text-white text-[11px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
+                                <i class="fa-solid fa-gift"></i> ${perk}
+                            </div>
+                        </div>
+                        <div class="p-4 pb-2">
+                            <h3 class="font-bold text-lg text-gray-800 line-clamp-1">${p.name}</h3>
+                            <span class="text-gray-500 text-xs"><i class="fa-solid fa-location-dot mr-1"></i> ${p.loc}</span>
+                        </div>
                     </div>
-                </div>`).join('');
+                    <div class="px-4 pb-4 pt-2 border-t border-gray-100 bg-blue-50/40">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xs text-gray-400 line-through">${formatMoney(p.price, currentLang)}</span>
+                            <span class="font-extrabold text-lg text-food-red">${formatMoney(p.salePrice, currentLang)}</span>
+                        </div>
+                        <p class="text-[11px] font-semibold text-orange-600 mt-0.5"><i class="fa-solid fa-bolt mr-1"></i>(${friLabel})</p>
+                    </div>
+                </div>`;
+            }).join('');
 
             const recs = staysData.filter(d => d.type === 'recommended');
-            document.getElementById('s_preview_recommended_container').innerHTML = recs.slice(0,4).map(p => `
-                <div class="cursor-pointer group bg-white rounded-lg p-3 shadow-sm border border-gray-100 card-hover flex flex-col justify-between">
+            document.getElementById('s_preview_recommended_container').innerHTML = recs.slice(0,4).map(p => {
+                const perk = currentLang === 'en' ? p.perkEn : p.perkVi;
+                return `
+                <div class="cursor-pointer group bg-white rounded-xl p-3 shadow-sm border border-gray-100 card-hover flex flex-col justify-between">
                     <div>
-                        <div class="rounded-lg overflow-hidden h-32 mb-3 relative"><img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>
-                        <h3 class="font-bold text-gray-800 group-hover:text-onetrip-light transition line-clamp-1">${p.name}</h3>
-                        <span class="text-xs text-gray-500 mt-1 block">${p.loc} • ${p.desc.substring(0, 30)}...</span>
+                        <div class="rounded-lg overflow-hidden h-32 mb-2.5 relative">
+                            <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute top-1.5 right-1.5 text-[11px] text-white font-bold bg-onetrip-blue px-2 py-0.5 rounded shadow"><i class="fa-solid fa-star text-onetrip-yellow"></i> ${p.rating}</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-onetrip-light transition line-clamp-1 text-sm md:text-base">${p.name}</h3>
+                        <span class="text-xs text-gray-500 mt-0.5 block line-clamp-1">${p.loc} • ${p.desc}</span>
+                        <div class="mt-2 bg-blue-50 border border-blue-200 text-onetrip-blue text-[11px] font-semibold px-2 py-1 rounded flex items-center gap-1">
+                            <i class="fa-solid fa-tag text-onetrip-light"></i> <span class="line-clamp-1">${perk}</span>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
-                        <p class="text-food-red font-bold text-sm">${currentLang==='en'?'$'+(p.price/25000).toFixed(0):'~ '+(p.price/1000)+'k VND'}</p>
-                        <div class="text-xs text-onetrip-light font-bold bg-blue-50 px-2 py-1 rounded"><i class="fa-solid fa-star"></i> ${p.rating}</div>
+                    <div class="mt-3 pt-2.5 border-t border-gray-100">
+                        <div class="flex items-baseline gap-1.5 flex-wrap">
+                            <span class="text-xs text-gray-400 line-through">${formatMoney(p.price, currentLang)}</span>
+                            <span class="text-food-red font-extrabold text-base">${formatMoney(p.salePrice, currentLang)}</span>
+                        </div>
+                        <p class="text-[11px] font-semibold text-red-600 mt-0.5">(${friLabel})</p>
                     </div>
-                </div>`).join('');
+                </div>`;
+            }).join('');
 
             let filtered = staysData;
             if(filterStaysCity !== "Toàn quốc" && filterStaysCity !== "Nationwide") filtered = staysData.filter(p => p.city === filterStaysCity);
@@ -881,23 +969,33 @@
             if(filtered.length===0){
                 document.getElementById('s_full_results').innerHTML = `<div class="text-center py-10 bg-white rounded-lg border border-gray-200"><p class="text-gray-500">${staticTranslations[currentLang].no_stays}</p></div>`;
             } else {
-                document.getElementById('s_full_results').innerHTML = filtered.map(p => `
-                    <div class="bg-white rounded-lg border border-gray-200 p-4 flex flex-col md:flex-row gap-5 shadow-sm hover:shadow-md transition cursor-pointer card-hover">
-                        <div class="relative w-full md:w-64 h-48 md:h-full flex-shrink-0"><img src="${p.img}" class="w-full h-full object-cover rounded-md"></div>
+                document.getElementById('s_full_results').innerHTML = filtered.map(p => {
+                    const perk = currentLang === 'en' ? p.perkEn : p.perkVi;
+                    return `
+                    <div class="bg-white rounded-xl border border-gray-200 p-4 flex flex-col md:flex-row gap-5 shadow-sm hover:shadow-md transition cursor-pointer card-hover">
+                        <div class="relative w-full md:w-64 h-48 md:h-auto flex-shrink-0"><img src="${p.img}" class="w-full h-full object-cover rounded-lg"></div>
                         <div class="flex-1 flex flex-col justify-between">
                             <div>
                                 <h3 class="font-bold text-xl text-onetrip-light hover:underline">${p.name}</h3>
                                 <div class="flex items-center gap-2 mt-1"><span class="text-xs text-white bg-onetrip-blue px-2 py-0.5 rounded font-bold">${p.rating}</span><span class="text-sm text-gray-500 font-medium"><i class="fa-solid fa-location-dot mr-1"></i> ${p.loc}</span></div>
-                                <p class="text-sm text-gray-600 mt-3 border-l-2 border-gray-200 pl-3">${p.desc}</p>
+                                <p class="text-sm text-gray-600 mt-2.5 border-l-2 border-gray-200 pl-3">${p.desc}</p>
+                                <div class="mt-3 inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-onetrip-blue text-xs font-bold px-3 py-1 rounded-full">
+                                    <i class="fa-solid fa-gift"></i> ${perk}
+                                </div>
                             </div>
-                            <div class="text-right mt-4 pt-4 border-t border-gray-100 flex flex-col md:flex-row md:items-end justify-between md:justify-end gap-4">
+                            <div class="text-right mt-4 pt-3 border-t border-gray-100 flex flex-col md:flex-row md:items-end justify-between md:justify-end gap-4">
                                 <div class="text-left md:text-right">
-                                    <p class="text-xs text-gray-500 mb-1">${staticTranslations[currentLang].price_note}</p>
-                                    <p class="text-2xl font-bold text-food-red">${currentLang==='en'?'$'+(p.price/25000).toFixed(0):p.price.toLocaleString()+' VND'}</p>
+                                    <p class="text-xs text-gray-500 mb-0.5">${staticTranslations[currentLang].price_note}</p>
+                                    <div class="flex items-baseline md:justify-end gap-2">
+                                        <span class="text-sm text-gray-400 line-through">${formatMoney(p.price, currentLang)}</span>
+                                        <span class="text-2xl font-extrabold text-food-red">${formatMoney(p.salePrice, currentLang)}</span>
+                                    </div>
+                                    <p class="text-xs font-bold text-orange-600 mt-0.5"><i class="fa-solid fa-bolt mr-1"></i>(${friLabel})</p>
                                 </div>
                             </div>
                         </div>
-                    </div>`).join('');
+                    </div>`;
+                }).join('');
             }
             document.getElementById('s_result_count').textContent = filtered.length;
         }
@@ -905,13 +1003,14 @@
         let filterEntCity = "Toàn quốc";
         function renderEnt() {
             const t = staticTranslations[currentLang];
+            const friLabel = getNextFridayText(currentLang);
             const eTpl = (item, isList) => {
-                const data = item[currentLang]; const price = currentLang==='en' ? `$${(item.price/25000).toFixed(0)}` : `${item.price.toLocaleString()} ₫`;
+                const data = item[currentLang];
                 if(isList) {
                     return `
-                    <div class="bg-white rounded-lg border border-gray-200 p-4 flex flex-col md:flex-row gap-5 shadow-sm hover:shadow-md transition cursor-pointer card-hover">
-                        <div class="relative w-full md:w-56 h-48 md:h-full flex-shrink-0">
-                            <img src="${item.img}" class="w-full h-full object-cover rounded-md">
+                    <div class="bg-white rounded-xl border border-gray-200 p-4 flex flex-col md:flex-row gap-5 shadow-sm hover:shadow-md transition cursor-pointer card-hover">
+                        <div class="relative w-full md:w-56 h-48 md:h-auto flex-shrink-0">
+                            <img src="${item.img}" class="w-full h-full object-cover rounded-lg">
                             <div class="absolute top-2 left-2 bg-ent-purple text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${data.type}</div>
                         </div>
                         <div class="flex-1 flex flex-col justify-between">
@@ -922,29 +1021,46 @@
                                     <span class="text-xs text-gray-500">(${item.reviews} ${t.reviews})</span>
                                     <span class="text-sm text-gray-500 font-medium"><i class="fa-solid fa-location-dot mr-1"></i> ${data.loc}</span>
                                 </div>
-                                <p class="text-sm text-gray-600 mt-3 hidden md:block line-clamp-2">${data.desc}</p>
+                                <p class="text-sm text-gray-600 mt-2.5 hidden md:block line-clamp-2">${data.desc}</p>
+                                <div class="mt-2.5 inline-flex items-center gap-1.5 bg-purple-50 border border-purple-200 text-ent-purple text-xs font-bold px-3 py-1 rounded-full">
+                                    <i class="fa-solid fa-gift"></i> ${data.perk}
+                                </div>
                             </div>
-                            <div class="text-right mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div class="text-right mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
                                 <p class="text-xs text-green-600 font-bold bg-green-50 px-2 py-1 rounded"><i class="fa-solid fa-bolt mr-1"></i> ${t.instant}</p>
-                                <div><p class="text-xs text-gray-500 mb-1">${t.from_price}</p><p class="text-xl font-bold text-food-red">${price}</p></div>
+                                <div>
+                                    <p class="text-xs text-gray-500 mb-0.5">${t.from_price}</p>
+                                    <div class="flex items-baseline justify-end gap-2">
+                                        <span class="text-xs text-gray-400 line-through">${formatMoney(item.price, currentLang)}</span>
+                                        <span class="text-xl font-extrabold text-food-red">${formatMoney(item.salePrice, currentLang)}</span>
+                                    </div>
+                                    <p class="text-xs font-bold text-orange-600 mt-0.5">(${friLabel})</p>
+                                </div>
                             </div>
                         </div>
                     </div>`;
                 } else {
                     return `
-                    <div class="cursor-pointer group bg-white rounded-lg shadow-sm border border-gray-100 card-hover flex flex-col h-full">
-                        <div class="relative h-40 overflow-hidden rounded-t-lg">
+                    <div class="cursor-pointer group bg-white rounded-xl shadow-sm border border-gray-100 card-hover flex flex-col h-full">
+                        <div class="relative h-36 overflow-hidden rounded-t-xl">
                             <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                             <div class="absolute top-2 left-2 bg-ent-purple text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${data.type}</div>
+                            <div class="absolute top-2 right-2 text-[11px] text-white font-bold bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-star text-onetrip-yellow"></i> ${item.rating}</div>
                         </div>
                         <div class="p-3 flex flex-col flex-1 justify-between">
                             <div>
                                 <h3 class="font-bold text-gray-800 text-sm md:text-base group-hover:text-ent-purple transition line-clamp-2 mb-1">${data.title}</h3>
-                                <span class="text-xs text-gray-500"><i class="fa-solid fa-location-dot"></i> ${data.loc}</span>
+                                <span class="text-xs text-gray-500 block"><i class="fa-solid fa-location-dot"></i> ${data.loc}</span>
+                                <div class="mt-2 bg-purple-50 border border-purple-200 text-ent-purple text-[11px] font-semibold px-2 py-1 rounded flex items-center gap-1">
+                                    <i class="fa-solid fa-tag"></i> <span class="line-clamp-1">${data.perk}</span>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-end mt-3 pt-3 border-t border-gray-100">
-                                <div class="text-xs text-gray-600 font-bold flex items-center gap-1"><i class="fa-solid fa-star text-onetrip-yellow"></i> ${item.rating}</div>
-                                <p class="text-food-red font-bold text-sm md:text-base">${price}</p>
+                            <div class="mt-3 pt-2.5 border-t border-gray-100">
+                                <div class="flex items-baseline gap-1.5 flex-wrap">
+                                    <span class="text-xs text-gray-400 line-through">${formatMoney(item.price, currentLang)}</span>
+                                    <span class="text-food-red font-extrabold text-base">${formatMoney(item.salePrice, currentLang)}</span>
+                                </div>
+                                <p class="text-[11px] font-semibold text-red-600 mt-0.5">(${friLabel})</p>
                             </div>
                         </div>
                     </div>`;
@@ -984,19 +1100,26 @@
         function openModal(id) {
             const item = restaurantsData.find(r => r.id === id); if(!item) return;
             const data = item[currentLang];
+            const friLabel = getNextFridayText(currentLang);
             document.getElementById('m_img').src = item.img; document.getElementById('m_name').textContent = data.name;
             document.getElementById('m_address').textContent = data.loc; document.getElementById('m_rating').textContent = item.rating;
             document.getElementById('m_desc').textContent = data.desc;
-            document.getElementById('m_price').textContent = currentLang==='en'?`~ $${(item.price/25000).toFixed(2)} USD`:`~ ${item.price.toLocaleString()} VND`;
-            document.getElementById('m_phone_text').textContent = item.phone; document.getElementById('m_phone').href = `tel:${item.phone.replace(/\s/g, '')}`;
             
-            // Cập nhật link Google Maps: Ưu tiên map_url có sẵn, nếu là '#' thì tự tạo link tìm kiếm theo tên + địa chỉ
+            document.getElementById('m_price').innerHTML = `
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-baseline gap-2 flex-wrap">
+                        <span class="text-xs text-gray-400 line-through font-normal">${formatMoney(item.price, currentLang)}</span>
+                        <span class="text-xl font-extrabold text-food-red">${formatMoney(item.salePrice, currentLang)}</span>
+                        <span class="text-xs font-bold text-orange-600">(${friLabel})</span>
+                    </div>
+                    <span class="text-xs font-semibold text-amber-700"><i class="fa-solid fa-gift mr-1"></i>${data.perk}</span>
+                </div>`;
+
+            document.getElementById('m_phone_text').textContent = item.phone; document.getElementById('m_phone').href = `tel:${item.phone.replace(/\s/g, '')}`;
             const mapLink = (item.map_url && item.map_url !== '#') 
                 ? item.map_url 
                 : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.vi.name + ' ' + item.vi.loc)}`;
             document.getElementById('m_map').href = mapLink;
-            
-            // Xử lý nút Đặt Bàn có đa ngôn ngữ
             document.querySelector('#restModal .flex-wrap button').onclick = () => alert(staticTranslations[currentLang].alert_dev);
             
             const tagEl = document.getElementById('m_tag'); if(data.tag) { tagEl.textContent = data.tag; tagEl.style.display = 'block'; } else tagEl.style.display = 'none';
@@ -1021,7 +1144,7 @@
                 if(tog && pop) { tog.onclick = (e) => { e.stopPropagation(); pop.classList.toggle('hidden'); }; pop.onclick = (e) => e.stopPropagation(); document.addEventListener('click', () => pop.classList.add('hidden')); }
             }
             bindPopover('guestToggle', 'guestPopover'); bindPopover('s_guestToggle', 's_guestPopover'); bindPopover('e_guestToggle', 'e_guestPopover');
-// ================= XỬ LÝ TĂNG/GIẢM SỐ LƯỢNG KHÁCH & PHÒNG =================
+
             const guestState = {
                 food: { adults: 2, children: 0 },
                 stays: { adults: 2, children: 0, rooms: 1 },
@@ -1030,18 +1153,15 @@
 
             window.updateAllGuestTexts = function() {
                 const t = staticTranslations[currentLang];
-                // 1. Ẩm thực
                 document.getElementById('valAdults').textContent = guestState.food.adults;
                 document.getElementById('valChildren').textContent = guestState.food.children;
                 document.getElementById('guestSummaryText').textContent = `${guestState.food.adults} ${t.u_adults} · ${guestState.food.children} ${t.u_children}`;
                 
-                // 2. Lưu trú
                 document.getElementById('s_aVal').textContent = guestState.stays.adults;
                 document.getElementById('s_cVal').textContent = guestState.stays.children;
                 document.getElementById('s_rVal').textContent = guestState.stays.rooms;
                 document.getElementById('s_guestText').textContent = `${guestState.stays.adults} ${t.u_adults} · ${guestState.stays.children} ${t.u_children} · ${guestState.stays.rooms} ${t.u_rooms}`;
 
-                // 3. Giải trí
                 document.getElementById('e_aVal').textContent = guestState.ent.adults;
                 document.getElementById('e_cVal').textContent = guestState.ent.children;
                 const entChildText = guestState.ent.children > 0 ? ` · ${guestState.ent.children} ${t.u_children}` : '';
@@ -1060,13 +1180,11 @@
                 }
             };
 
-            // Gắn sự kiện cho module Ẩm thực
             bindCounter('btnAdultMinus', 'food', 'adults', -1, 1);
             bindCounter('btnAdultPlus', 'food', 'adults', 1, 1);
             bindCounter('btnChildMinus', 'food', 'children', -1, 0);
             bindCounter('btnChildPlus', 'food', 'children', 1, 0);
 
-            // Gắn sự kiện cho module Lưu trú
             bindCounter('s_aMinus', 'stays', 'adults', -1, 1);
             bindCounter('s_aPlus', 'stays', 'adults', 1, 1);
             bindCounter('s_cMinus', 'stays', 'children', -1, 0);
@@ -1074,21 +1192,17 @@
             bindCounter('s_rMinus', 'stays', 'rooms', -1, 1);
             bindCounter('s_rPlus', 'stays', 'rooms', 1, 1);
 
-            // Gắn sự kiện cho module Giải trí
             bindCounter('e_aMinus', 'ent', 'adults', -1, 1);
             bindCounter('e_aPlus', 'ent', 'adults', 1, 1);
             bindCounter('e_cMinus', 'ent', 'children', -1, 0);
             bindCounter('e_cPlus', 'ent', 'children', 1, 0);
+
             renderFood(); renderStays(); renderEnt();
-            
-            // Khởi chạy Chatbox lần đầu
             setTimeout(() => initChat(), 800);
         });
 
         // ================= AI CHATBOX LOGIC & I18N =================
         const chatHistory = document.getElementById('chatHistory');
-        
-        // Dữ liệu Chatbox Đa ngôn ngữ
         const chatI18n = {
             vi: {
                 greet1: "Chào người chơi hệ xê dịch! Cuối tuần đến rồi, cột pin năng lượng của bạn chắc đang báo đỏ. Để OneTrip thiết kế một chuyến 'chữa lành' đo ni đóng giày cho bạn nhé! 😎",
@@ -1120,11 +1234,9 @@
             }
         };
 
-        // Hàm Khởi tạo Chat (Gọn gàng và hỗ trợ reset ngôn ngữ)
         function initChat() {
-            chatHistory.innerHTML = ''; // Xóa lịch sử chat cũ
+            chatHistory.innerHTML = '';
             document.getElementById('aiChatWindow').classList.remove('hidden');
-            
             addBotMessage(chatI18n[currentLang].greet1);
             setTimeout(() => {
                 addBotMessage(chatI18n[currentLang].greet2);
@@ -1148,7 +1260,6 @@
             const optionsDiv = document.createElement('div'); optionsDiv.className = 'flex flex-col gap-2 mt-1 fade-in w-full items-end';
             const opts = chatI18n[currentLang];
             const options = [ { id: 1, text: opts.opt1 }, { id: 2, text: opts.opt2 }, { id: 3, text: opts.opt3 } ];
-
             options.forEach(opt => {
                 const btn = document.createElement('button');
                 btn.className = 'bg-white border border-onetrip-light text-onetrip-light hover:bg-blue-50 hover:text-blue-700 px-3 py-2 rounded-xl text-xs font-bold text-left shadow-sm transition-colors w-[85%]';
@@ -1161,12 +1272,10 @@
 
         function handleOptionClick(userText, optionId, optionsContainer) {
             optionsContainer.remove(); addUserMessage(userText);
-            
             setTimeout(() => {
                 const opts = chatI18n[currentLang];
                 let botReply = "";
                 const btnClass = "bg-food-red text-white px-3 py-2 rounded-lg text-xs font-bold inline-block mt-2 hover:bg-red-700 transition shadow-md";
-                
                 if (optionId === 1) {
                     botReply = opts.rep1 + `<a href='javascript:void(0)' onclick="closeChatAndChotDon('food', 'premium', 'p4')" class="${btnClass}">${opts.btn1}</a>`;
                 } else if (optionId === 2) {
@@ -1182,8 +1291,6 @@
             document.getElementById('aiChatWindow').classList.add('hidden');
             if (typeof switchTab === 'function') switchTab(tabId);
             if (typeof showAllHomes === 'function') showAllHomes(); 
-            if (typeof showHomeView === 'function') showHomeView(); 
-            
             setTimeout(() => {
                 const targetSection = document.getElementById(sectionId);
                 if (targetSection) {
@@ -1210,6 +1317,7 @@
         document.getElementById('chatInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') sendUserMessage();
         });
+
 		// ================= NỘI DUNG FOOTER (VỀ CHÚNG TÔI, ĐIỀU KHOẢN, BẢO MẬT) =================
         const footerPagesData = {
             about: {
