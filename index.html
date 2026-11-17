@@ -658,7 +658,8 @@
                 m_book: "Đặt bàn ngay", m_map_btn: "Xem bản đồ", alert_dev: "Tính năng đang được phát triển!",
                 no_stays: "Không tìm thấy chỗ nghỉ.", price_note: "Giá 1 đêm, 2 người lớn",
                 no_ent: "Không có trải nghiệm nào phù hợp.", reviews: "đánh giá", instant: "Xác nhận tức thì", from_price: "Chỉ từ",
-                chat_title: "Trợ lý OneTrip AI", chat_placeholder: "Nhập yêu cầu..."
+                chat_title: "Trợ lý OneTrip AI", chat_placeholder: "Nhập yêu cầu...",
+				u_adults: "người lớn", u_children: "trẻ em", u_rooms: "phòng"
             },
             en: {
                 tab_food: "Culinary", tab_stays: "Stays", tab_ent: "Entertainment", loc_all: "Nationwide", search_btn: "Search", btn_filter: "Filter", btn_back: "Go Back", btn_view_all: "View all",
@@ -683,7 +684,8 @@
                 m_book: "Book Now", m_map_btn: "View Map", alert_dev: "Feature under development!",
                 no_stays: "No properties found.", price_note: "Price per night, 2 adults",
                 no_ent: "No matching experiences found.", reviews: "reviews", instant: "Instant Confirmation", from_price: "From",
-                chat_title: "OneTrip AI Assistant", chat_placeholder: "Type your request..."
+                chat_title: "OneTrip AI Assistant", chat_placeholder: "Type your request...",
+				u_adults: "adults", u_children: "children", u_rooms: "rooms",
             }
         };
 
@@ -734,7 +736,7 @@
                     drop.value = t.loc_all;
                 }
             });
-            
+            if(typeof updateAllGuestTexts === 'function') updateAllGuestTexts();
             // Re-render Data
             if(typeof renderFood === 'function') renderFood(); 
             if(typeof renderStays === 'function') renderStays(); 
@@ -1003,7 +1005,64 @@
                 if(tog && pop) { tog.onclick = (e) => { e.stopPropagation(); pop.classList.toggle('hidden'); }; pop.onclick = (e) => e.stopPropagation(); document.addEventListener('click', () => pop.classList.add('hidden')); }
             }
             bindPopover('guestToggle', 'guestPopover'); bindPopover('s_guestToggle', 's_guestPopover'); bindPopover('e_guestToggle', 'e_guestPopover');
+// ================= XỬ LÝ TĂNG/GIẢM SỐ LƯỢNG KHÁCH & PHÒNG =================
+            const guestState = {
+                food: { adults: 2, children: 0 },
+                stays: { adults: 2, children: 0, rooms: 1 },
+                ent: { adults: 2, children: 0 }
+            };
 
+            window.updateAllGuestTexts = function() {
+                const t = staticTranslations[currentLang];
+                // 1. Ẩm thực
+                document.getElementById('valAdults').textContent = guestState.food.adults;
+                document.getElementById('valChildren').textContent = guestState.food.children;
+                document.getElementById('guestSummaryText').textContent = `${guestState.food.adults} ${t.u_adults} · ${guestState.food.children} ${t.u_children}`;
+                
+                // 2. Lưu trú
+                document.getElementById('s_aVal').textContent = guestState.stays.adults;
+                document.getElementById('s_cVal').textContent = guestState.stays.children;
+                document.getElementById('s_rVal').textContent = guestState.stays.rooms;
+                document.getElementById('s_guestText').textContent = `${guestState.stays.adults} ${t.u_adults} · ${guestState.stays.children} ${t.u_children} · ${guestState.stays.rooms} ${t.u_rooms}`;
+
+                // 3. Giải trí
+                document.getElementById('e_aVal').textContent = guestState.ent.adults;
+                document.getElementById('e_cVal').textContent = guestState.ent.children;
+                const entChildText = guestState.ent.children > 0 ? ` · ${guestState.ent.children} ${t.u_children}` : '';
+                document.getElementById('e_guestText').textContent = `${guestState.ent.adults} ${t.u_adults}${entChildText}`;
+            };
+
+            const bindCounter = (btnId, module, field, delta, minVal) => {
+                const btn = document.getElementById(btnId);
+                if (btn) {
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        guestState[module][field] = Math.max(minVal, guestState[module][field] + delta);
+                        updateAllGuestTexts();
+                    };
+                }
+            };
+
+            // Gắn sự kiện cho module Ẩm thực
+            bindCounter('btnAdultMinus', 'food', 'adults', -1, 1);
+            bindCounter('btnAdultPlus', 'food', 'adults', 1, 1);
+            bindCounter('btnChildMinus', 'food', 'children', -1, 0);
+            bindCounter('btnChildPlus', 'food', 'children', 1, 0);
+
+            // Gắn sự kiện cho module Lưu trú
+            bindCounter('s_aMinus', 'stays', 'adults', -1, 1);
+            bindCounter('s_aPlus', 'stays', 'adults', 1, 1);
+            bindCounter('s_cMinus', 'stays', 'children', -1, 0);
+            bindCounter('s_cPlus', 'stays', 'children', 1, 0);
+            bindCounter('s_rMinus', 'stays', 'rooms', -1, 1);
+            bindCounter('s_rPlus', 'stays', 'rooms', 1, 1);
+
+            // Gắn sự kiện cho module Giải trí
+            bindCounter('e_aMinus', 'ent', 'adults', -1, 1);
+            bindCounter('e_aPlus', 'ent', 'adults', 1, 1);
+            bindCounter('e_cMinus', 'ent', 'children', -1, 0);
+            bindCounter('e_cPlus', 'ent', 'children', 1, 0);
             renderFood(); renderStays(); renderEnt();
             
             // Khởi chạy Chatbox lần đầu
