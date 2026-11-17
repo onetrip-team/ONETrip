@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONETrip.com - Ẩm thực, Lưu trú & Giải trí</title>
+    <title>OneTrip - Ẩm thực, Lưu trú & Giải trí</title>
+	<link rel="icon" type="image/png" href="logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -38,17 +39,18 @@
         .loc-item { cursor: pointer; padding: 10px 15px; border-bottom: 1px solid #f0f0f0; transition: background 0.2s; }
         .loc-item:hover { background-color: #f0f8ff; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .bg-onetrip-gradient { background: linear-gradient(180deg, #5de0e6 0%, #004aad 100%); }
     </style>
 </head>
 <body class="antialiased text-gray-800 relative">
 
     <!-- NAVBAR -->
-    <nav class="bg-onetrip-blue text-white z-50 sticky top-0 shadow-md">
+    <nav class="bg-onetrip-gradient text-white z-50 sticky top-0 shadow-md">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between items-center pt-4 pb-2">
-                <div class="text-2xl font-bold tracking-tight flex items-center gap-2 cursor-pointer" onclick="showAllHomes(); switchTab('food')">
-                    <i class="fa-solid fa-earth-americas text-onetrip-yellow"></i>
-                    <span>ONETrip.com</span>
+            <div class="flex justify-between items-center pt-3 pb-2">
+                <!-- LOGO CHÍNH (Đặt file logo.png cùng thư mục với file HTML trên GitHub) -->
+                <div class="flex items-center cursor-pointer" onclick="showAllHomes(); switchTab('food')">
+                    <img src="logo.png" alt="OneTrip Logo" class="h-10 md:h-12 w-auto object-contain drop-shadow-sm">
                 </div>
                 <div class="flex items-center gap-2 md:gap-4">
                     <button id="currencyBtn" class="hidden md:block hover:bg-white/10 p-2 rounded transition">VND</button>
@@ -86,7 +88,7 @@
         <div id="app-food" class="block fade-in">
             <div id="home-view">
                 <!-- HERO ẨM THỰC -->
-                <div class="bg-onetrip-blue text-white pb-16 relative">
+                <div class="bg-onetrip-gradient text-white pb-16 relative">
                     <div class="max-w-6xl mx-auto px-4">
                         <div class="flex gap-2 md:gap-6 pt-2 overflow-x-auto pb-2 text-sm md:text-base scrollbar-hide">
                             <a href="#premium" class="flex items-center gap-2 px-3 md:px-4 py-2 hover:bg-white/10 rounded-full transition whitespace-nowrap"><i class="fa-solid fa-bell-concierge text-onetrip-yellow"></i> <span data-i18n="nav_premium">Đặt trước</span></a>
@@ -158,7 +160,7 @@
                             <!-- Promo 1 -->
                             <div class="bg-gradient-to-br from-red-500 to-orange-500 rounded-xl p-6 text-white shadow-md relative overflow-hidden card-hover cursor-pointer">
                                 <i class="fa-solid fa-percent absolute -bottom-4 -right-2 text-8xl text-white opacity-20"></i>
-                                <div data-i18n="promo_exclusive" class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Độc quyền ONETrip</div>
+                                <div data-i18n="promo_exclusive" class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Độc quyền OneTrip</div>
                                 <h3 data-i18n="promo_1_title" class="text-xl font-bold mb-2">Weekend Sale</h3>
                                 <p data-i18n="promo_1_desc" class="text-sm opacity-90 mb-4 h-10">Áp dụng cho mọi nhà hàng khi đặt bàn vào Thứ 6, Thứ 7, Chủ nhật.</p>
                                 <button data-i18n="promo_1_btn" class="bg-white text-red-600 font-bold py-2 px-5 rounded-lg text-sm shadow-sm hover:bg-gray-100 transition">Nhận mã: WEEKEND20</button>
@@ -211,7 +213,7 @@
         <div id="app-stays" class="hidden fade-in">
             <div id="s-home-view">
                 <!-- HERO LƯU TRÚ -->
-                <div class="bg-onetrip-blue text-white pb-16 relative">
+                <div class="bg-onetrip-gradient text-white pb-16 relative">
                     <div class="max-w-6xl mx-auto px-4">
                         <div class="flex gap-2 md:gap-6 pt-2 overflow-x-auto pb-2 text-sm md:text-base scrollbar-hide">
                             <a href="#s-premium" class="flex items-center gap-2 px-3 md:px-4 py-2 hover:bg-white/10 rounded-full transition whitespace-nowrap"><i class="fa-solid fa-hotel text-onetrip-yellow"></i> <span data-i18n="s_premium_title">Đặt trước cao cấp</span></a>
@@ -283,7 +285,7 @@
                             <!-- Promo 1 -->
                             <div class="bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl p-6 text-white shadow-md relative overflow-hidden card-hover cursor-pointer">
                                 <i class="fa-solid fa-plane-departure absolute -bottom-4 -right-2 text-8xl text-white opacity-20"></i>
-                                <div data-i18n="promo_exclusive" class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Độc quyền ONETrip</div>
+                                <div data-i18n="promo_exclusive" class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 backdrop-blur-sm">Độc quyền OneTrip</div>
                                 <h3 data-i18n="s_promo_1_title" class="text-xl font-bold mb-2">Early Bird Sale</h3>
                                 <p data-i18n="s_promo_1_desc" class="text-sm opacity-90 mb-4 h-10">Giảm thêm 15% khi đặt phòng trước 30 ngày.</p>
                                 <button data-i18n="s_promo_1_btn" class="bg-white text-indigo-600 font-bold py-2 px-5 rounded-lg text-sm shadow-sm hover:bg-gray-100 transition">Nhận mã: EARLY15</button>
@@ -342,7 +344,7 @@
         <div id="app-ent" class="hidden fade-in">
             <div id="e-home-view">
                 <!-- HERO GIẢI TRÍ -->
-                <div class="bg-onetrip-blue text-white pb-16 relative">
+                <div class="bg-onetrip-gradient text-white pb-16 relative">
                     <div class="max-w-6xl mx-auto px-4">
                         <div class="flex gap-2 md:gap-6 pt-2 overflow-x-auto pb-2 text-sm md:text-base scrollbar-hide">
                             <a href="#e-popular" class="flex items-center gap-2 px-3 md:px-4 py-2 hover:bg-white/10 rounded-full transition whitespace-nowrap"><i class="fa-solid fa-ticket text-onetrip-yellow"></i> <span data-i18n="e_nav_popular">Hoạt động nổi bật</span></a>
@@ -486,15 +488,15 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-onetrip-blue text-white py-8 mt-auto border-t border-blue-900">
+    <footer class="bg-onetrip-gradient text-white py-8 mt-auto border-t border-blue-900">
         <div class="max-w-6xl mx-auto px-4 text-center flex flex-col items-center">
-            <h2 class="text-2xl font-bold mb-4 tracking-tight flex items-center gap-2"><i class="fa-solid fa-earth-americas"></i> ONETrip.com</h2>
+            <img src="logo.png" alt="OneTrip Logo" class="h-10 w-auto object-contain mb-4 drop-shadow-sm">
             <div class="flex gap-4 mb-6 text-sm">
                 <a href="#" class="hover:underline">Về chúng tôi</a>
                 <a href="#" class="hover:underline">Điều khoản</a>
                 <a href="#" class="hover:underline">Chính sách bảo mật</a>
             </div>
-            <p class="text-gray-300 text-sm">Bản quyền © 2026 ONETrip.com™.</p>
+            <p class="text-gray-200 text-sm">Bản quyền © 2026 OneTrip™.</p>
         </div>
     </footer>
 <!-- CHATBOX AI -->
@@ -505,7 +507,7 @@
         <div class="bg-onetrip-blue text-white p-3 flex justify-between items-center shadow-sm z-10 relative">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-robot text-onetrip-yellow text-xl"></i>
-                <span class="font-bold text-sm">Trợ lý ONETrip AI</span>
+                <span class="font-bold text-sm">Trợ lý OneTrip AI</span>
             </div>
             <button onclick="document.getElementById('aiChatWindow').classList.add('hidden')" class="text-white hover:text-red-400 transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
@@ -642,7 +644,7 @@
                 e_rec_title: "Gợi ý trải nghiệm", e_rec_desc: "Các hoạt động giải trí nổi bật nhất", e_found_text: "hoạt động được tìm thấy",
                 register: "Đăng ký", login: "Đăng nhập", adults: "Người lớn", children: "Trẻ em", rooms: "Phòng", found_text_1: "Đã tìm thấy", found_text_2: "địa điểm", s_found_text: "chỗ nghỉ được tìm thấy",
                 premium_title: "Đặt trước", premium_desc: "Trải nghiệm ẩm thực tinh tế, sang trọng", recommended_title: "Đề xuất", recommended_desc: "Thưởng thức chuẩn vị địa phương", s_premium_desc: "Trải nghiệm lưu trú sang trọng tại các resort và khách sạn 5 sao",
-                offers_title: "Ưu đãi hấp dẫn", promo_exclusive: "Độc quyền ONETrip", promo_1_title: "Weekend Sale", promo_1_desc: "Áp dụng cho mọi nhà hàng khi đặt bàn vào Thứ 6, Thứ 7, Chủ nhật.", promo_1_btn: "Nhận mã: WEEKEND20",
+                offers_title: "Ưu đãi hấp dẫn", promo_exclusive: "Độc quyền OneTrip", promo_1_title: "Weekend Sale", promo_1_desc: "Áp dụng cho mọi nhà hàng khi đặt bàn vào Thứ 6, Thứ 7, Chủ nhật.", promo_1_btn: "Nhận mã: WEEKEND20",
                 promo_bday: "Ưu đãi Sinh nhật", promo_2_title: "Tặng Món Tráng Miệng", promo_2_desc: "Nhận ngay set bánh ngọt miễn phí trong tháng sinh nhật của bạn.", promo_explore: "Khám phá ngay",
                 promo_group: "Đặt tiệc Nhóm", promo_3_title: "Đi 5 Tính Tiền 4", promo_3_desc: "Ưu đãi cực hời cho nhóm bạn và gia đình tại chuỗi Buffet.", promo_list: "Xem danh sách",
                 s_promo_stay: "Lưu Trú Dài Ngày", s_promo_transfer: "Đưa đón sân bay",
@@ -656,7 +658,7 @@
                 m_book: "Đặt bàn ngay", m_map_btn: "Xem bản đồ", alert_dev: "Tính năng đang được phát triển!",
                 no_stays: "Không tìm thấy chỗ nghỉ.", price_note: "Giá 1 đêm, 2 người lớn",
                 no_ent: "Không có trải nghiệm nào phù hợp.", reviews: "đánh giá", instant: "Xác nhận tức thì", from_price: "Chỉ từ",
-                chat_title: "Trợ lý ONETrip AI", chat_placeholder: "Nhập yêu cầu..."
+                chat_title: "Trợ lý OneTrip AI", chat_placeholder: "Nhập yêu cầu..."
             },
             en: {
                 tab_food: "Culinary", tab_stays: "Stays", tab_ent: "Entertainment", loc_all: "Nationwide", search_btn: "Search", btn_filter: "Filter", btn_back: "Go Back", btn_view_all: "View all",
@@ -667,7 +669,7 @@
                 e_rec_title: "Recommended Experiences", e_rec_desc: "The most popular entertainment activities", e_found_text: "activities found",
                 register: "Register", login: "Login", adults: "Adults", children: "Children", rooms: "Rooms", found_text_1: "Found", found_text_2: "places", s_found_text: "properties found",
                 premium_title: "Reservations", premium_desc: "Experience exquisite, fine dining", recommended_title: "Recommended", recommended_desc: "Enjoy authentic local flavors", s_premium_desc: "Experience luxury stays at 5-star resorts",
-                offers_title: "Special Offers", promo_exclusive: "ONETrip Exclusive", promo_1_title: "Weekend Sale", promo_1_desc: "Applied for all restaurants when booking on Fri, Sat, Sun.", promo_1_btn: "Get code: WEEKEND20",
+                offers_title: "Special Offers", promo_exclusive: "OneTrip Exclusive", promo_1_title: "Weekend Sale", promo_1_desc: "Applied for all restaurants when booking on Fri, Sat, Sun.", promo_1_btn: "Get code: WEEKEND20",
                 promo_bday: "Birthday Treat", promo_2_title: "Free Dessert", promo_2_desc: "Get a free pastry set during your birthday month.", promo_explore: "Explore now",
                 promo_group: "Group Dining", promo_3_title: "Dine 5 Pay 4", promo_3_desc: "Great deal for groups and families at Buffet chains.", promo_list: "View list",
                 s_promo_stay: "Long Stay Offer", s_promo_transfer: "Airport Transfer",
@@ -681,7 +683,7 @@
                 m_book: "Book Now", m_map_btn: "View Map", alert_dev: "Feature under development!",
                 no_stays: "No properties found.", price_note: "Price per night, 2 adults",
                 no_ent: "No matching experiences found.", reviews: "reviews", instant: "Instant Confirmation", from_price: "From",
-                chat_title: "ONETrip AI Assistant", chat_placeholder: "Type your request..."
+                chat_title: "OneTrip AI Assistant", chat_placeholder: "Type your request..."
             }
         };
 
@@ -970,6 +972,12 @@
             document.getElementById('m_price').textContent = currentLang==='en'?`~ $${(item.price/25000).toFixed(2)} USD`:`~ ${item.price.toLocaleString()} VND`;
             document.getElementById('m_phone_text').textContent = item.phone; document.getElementById('m_phone').href = `tel:${item.phone.replace(/\s/g, '')}`;
             
+            // Cập nhật link Google Maps: Ưu tiên map_url có sẵn, nếu là '#' thì tự tạo link tìm kiếm theo tên + địa chỉ
+            const mapLink = (item.map_url && item.map_url !== '#') 
+                ? item.map_url 
+                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.vi.name + ' ' + item.vi.loc)}`;
+            document.getElementById('m_map').href = mapLink;
+            
             // Xử lý nút Đặt Bàn có đa ngôn ngữ
             document.querySelector('#restModal .flex-wrap button').onclick = () => alert(staticTranslations[currentLang].alert_dev);
             
@@ -1008,7 +1016,7 @@
         // Dữ liệu Chatbox Đa ngôn ngữ
         const chatI18n = {
             vi: {
-                greet1: "Chào người chơi hệ xê dịch! Cuối tuần đến rồi, cột pin năng lượng của bạn chắc đang báo đỏ. Để ONETrip thiết kế một chuyến 'chữa lành' đo ni đóng giày cho bạn nhé! 😎",
+                greet1: "Chào người chơi hệ xê dịch! Cuối tuần đến rồi, cột pin năng lượng của bạn chắc đang báo đỏ. Để OneTrip thiết kế một chuyến 'chữa lành' đo ni đóng giày cho bạn nhé! 😎",
                 greet2: "Hãy nghe xem con tim đang gào thét muốn điều gì nhất lúc này, và chọn 1 phong cách dưới đây:",
                 opt1: "👑 Làm tổng tài/phu nhân 2N1Đ",
                 opt2: "🎢 Quậy tung nóc, nạp vitamin vui vẻ",
@@ -1019,10 +1027,10 @@
                 btn1: "Xem The Deck Saigon",
                 btn2: "Xem Buffet Sen Tây Hồ",
                 btn3: "Xem Phở Thìn Lò Đúc",
-                fallback: "ONETrip AI ghi nhận: '<i>{text}</i>'. Vui lòng dùng các nút ở trên nhé!"
+                fallback: "OneTrip AI ghi nhận: '<i>{text}</i>'. Vui lòng dùng các nút ở trên nhé!"
             },
             en: {
-                greet1: "Hello wanderlust soul! The weekend is here and your energy is probably flashing red. Let ONETrip design a tailor-made 'healing' trip just for you! 😎",
+                greet1: "Hello wanderlust soul! The weekend is here and your energy is probably flashing red. Let OneTrip design a tailor-made 'healing' trip just for you! 😎",
                 greet2: "Listen to what your heart is screaming for right now, and choose 1 style below:",
                 opt1: "👑 Be a VIP for 2 Days 1 Night",
                 opt2: "🎢 Go wild, top up on happiness",
@@ -1033,7 +1041,7 @@
                 btn1: "View The Deck Saigon",
                 btn2: "View Sen Tay Ho Buffet",
                 btn3: "View Pho Thin Lo Duc",
-                fallback: "ONETrip AI noted: '<i>{text}</i>'. Please use the suggested buttons above!"
+                fallback: "OneTrip AI noted: '<i>{text}</i>'. Please use the suggested buttons above!"
             }
         };
 
