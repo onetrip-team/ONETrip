@@ -492,13 +492,29 @@
         <div class="max-w-6xl mx-auto px-4 text-center flex flex-col items-center">
             <img src="logo.png" alt="OneTrip Logo" class="h-10 w-auto object-contain mb-4 drop-shadow-sm">
             <div class="flex gap-4 mb-6 text-sm">
-                <a href="#" class="hover:underline">Về chúng tôi</a>
-                <a href="#" class="hover:underline">Điều khoản</a>
-                <a href="#" class="hover:underline">Chính sách bảo mật</a>
+                <button onclick="openInfoModal('about')" class="hover:underline cursor-pointer">Về chúng tôi</button>
+                <button onclick="openInfoModal('terms')" class="hover:underline cursor-pointer">Điều khoản</button>
+                <button onclick="openInfoModal('privacy')" class="hover:underline cursor-pointer">Chính sách bảo mật</button>
             </div>
             <p class="text-gray-200 text-sm">Bản quyền © 2026 OneTrip™.</p>
         </div>
     </footer>
+	<!-- MODAL THÔNG TIN FOOTER (VỀ CHÚNG TÔI / ĐIỀU KHOẢN / BẢO MẬT) -->
+    <div id="infoModal" class="fixed inset-0 bg-black/60 z-[100] hidden flex items-center justify-center p-4" onclick="closeInfoModal()">
+        <div class="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+            <div class="bg-onetrip-gradient text-white px-6 py-4 flex justify-between items-center">
+                <h3 id="infoModalTitle" class="font-bold text-lg">Tiêu đề</h3>
+                <button onclick="closeInfoModal()" class="text-white/80 hover:text-white text-xl leading-none cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="infoModalBody" class="p-6 overflow-y-auto text-sm text-gray-700 space-y-3 leading-relaxed"></div>
+            <div class="px-6 py-3 bg-gray-50 border-t border-gray-200 text-right">
+                <button onclick="closeInfoModal()" class="bg-onetrip-light text-white font-semibold px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition cursor-pointer">Đóng</button>
+            </div>
+        </div>
+    </div>
+	
 <!-- CHATBOX AI -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
     <!-- Cửa sổ Chat (Mặc định ẩn) -->
@@ -1194,6 +1210,77 @@
         document.getElementById('chatInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') sendUserMessage();
         });
+		// ================= NỘI DUNG FOOTER (VỀ CHÚNG TÔI, ĐIỀU KHOẢN, BẢO MẬT) =================
+        const footerPagesData = {
+            about: {
+                title: "Về Chúng Tôi – OneTrip",
+                content: `
+                    <p class="font-bold text-base text-onetrip-blue">OneTrip – Hành trình có mục đích</p>
+                    <p>OneTrip là nền tảng du lịch trực tuyến được xây dựng với mong muốn mang đến cho người dùng một cách khám phá và trải nghiệm du lịch thuận tiện, dễ dàng và ý nghĩa hơn.</p>
+                    <p>Chúng tôi hiểu rằng, sau những ngày học tập và làm việc bận rộn, mỗi người đều cần một khoảng thời gian để nghỉ ngơi, khám phá những điều mới mẻ và tái tạo năng lượng. Tuy nhiên, việc tìm kiếm, so sánh và đặt từng dịch vụ trên nhiều nền tảng khác nhau đôi khi khiến quá trình chuẩn bị chuyến đi trở nên phức tạp và mất thời gian.</p>
+                    <p>Vì vậy, OneTrip ra đời với mục tiêu kết nối các nhu cầu du lịch trên cùng một nền tảng: từ đặt phòng lưu trú, tìm kiếm nhà hàng, khám phá tour du lịch đến lựa chọn các hoạt động vui chơi, giải trí.</p>
+                    
+                    <h4 class="font-bold text-gray-900 pt-2">Điều gì làm nên OneTrip?</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><b>1. All-in-one – Tất cả trong một:</b> Tích hợp lưu trú, ăn uống, tour và giải trí trên cùng một nền tảng.</li>
+                        <li><b>2. AI Personalized Recommendation:</b> Chatbot AI hỗ trợ đề xuất nhà hàng và địa điểm ăn uống dựa trên sở thích riêng của từng người.</li>
+                        <li><b>3. Travel with a Purpose – Hành trình có mục đích:</b> Định hướng qua 4 giá trị cốt lõi: <b>Reboost</b> (khơi dậy hứng khởi), <b>Reserve</b> (đặt dịch vụ tối ưu chi phí), <b>Recharge</b> (nghỉ ngơi tái tạo năng lượng) và <b>Reward</b> (tận hưởng ưu đãi xứng đáng).</li>
+                        <li><b>4. Super Friday Mega Sale:</b> Khung giờ vàng từ 12:00 đến 14:00 mỗi thứ Sáu mang đến các chương trình ưu đãi hấp dẫn.</li>
+                    </ul>
+
+                    <h4 class="font-bold text-gray-900 pt-2">Sứ mệnh của chúng tôi</h4>
+                    <p>OneTrip mong muốn trở thành người bạn đồng hành đáng tin cậy trong mỗi hành trình, giúp việc lên kế hoạch du lịch trở nên đơn giản hơn và mang đến những trải nghiệm xứng đáng.</p>
+                    <p class="font-semibold text-onetrip-blue italic pt-1">OneTrip – Reserve once, Reboost always. (Đặt một lần, tiếp năng lượng mãi).</p>
+                `
+            },
+            terms: {
+                title: "Điều Khoản Sử Dụng",
+                content: `
+                    <p class="text-xs text-gray-400">Cập nhật lần cuối: 11/2026</p>
+                    <p>Chào mừng bạn đến với OneTrip! Khi truy cập và sử dụng website hoặc ứng dụng OneTrip, người dùng được khuyến nghị đọc kỹ các điều khoản dưới đây để hiểu rõ phạm vi dịch vụ và nguyên tắc sử dụng nền tảng.</p>
+                    <p><b>1. Giới thiệu chung:</b> OneTrip là nền tảng du lịch trực tuyến cung cấp các tiện ích tìm kiếm và đặt dịch vụ lưu trú, nhà hàng ăn uống, tour du lịch, vui chơi giải trí cùng chatbot AI gợi ý cá nhân hóa.</p>
+                    <p><b>2. Phạm vi sử dụng dịch vụ:</b> Người dùng truy cập OneTrip qua website và ứng dụng để khám phá, tham khảo gợi ý và đặt dịch vụ theo hướng dẫn tương ứng.</p>
+                    <p><b>3. Tài khoản người dùng:</b> Việc đăng ký, xác thực, quản lý và bảo mật thông tin đăng nhập tài khoản được áp dụng theo quy trình chính thức của OneTrip.</p>
+                    <p><b>4. Quy định về đặt dịch vụ:</b> Các điều kiện về xác nhận đặt chỗ, tình trạng chỗ, giá áp dụng và trách nhiệm giữa nền tảng, người dùng và nhà cung cấp được quy định cụ thể theo từng loại dịch vụ.</p>
+                    <p><b>5. Giá dịch vụ và thanh toán:</b> Thông tin về giá, phương thức thanh toán, phí phát sinh và thời điểm thanh toán được công bố rõ ràng trước khi hoàn tất giao dịch.</p>
+                    <p><b>6. Chính sách thay đổi và hủy đặt dịch vụ:</b> Điều kiện thay đổi lịch trình, hủy đặt chỗ và hoàn tiền được áp dụng theo quy định tương ứng của từng dịch vụ.</p>
+                    <p><b>7. Chương trình ưu đãi:</b> Bao gồm chương trình khung giờ vàng <i>Super Friday Mega Sale</i> (12:00 – 14:00 thứ Sáu hằng tuần) cùng các điều kiện áp dụng đi kèm.</p>
+                    <p><b>8. Quyền điều chỉnh điều khoản:</b> OneTrip sẽ công bố các thay đổi liên quan đến điều khoản sử dụng trên nền tảng khi có cập nhật.</p>
+                    <p><b>9. Thông tin hỗ trợ:</b> Mọi thắc mắc vui lòng liên hệ qua các kênh hỗ trợ chính thức trên website <span class="text-onetrip-light font-medium">onetrip.com</span>.</p>
+                    <p class="font-semibold text-onetrip-blue pt-1">OneTrip – Đồng hành cùng mọi hành trình có mục đích.</p>
+                `
+            },
+            privacy: {
+                title: "Chính Sách Bảo Mật",
+                content: `
+                    <p class="text-xs text-gray-400">Cập nhật lần cuối: 11/2026</p>
+                    <p>OneTrip tôn trọng quyền riêng tư của người dùng và cam kết bảo vệ thông tin trong quá trình truy cập, đăng ký và sử dụng dịch vụ trên website và ứng dụng.</p>
+                    <p><b>1. Phạm vi áp dụng:</b> Áp dụng đối với mọi người dùng truy cập website và ứng dụng OneTrip (tìm kiếm, đăng ký tài khoản, đặt dịch vụ, tương tác tính năng).</p>
+                    <p><b>2. Thông tin và dữ liệu được ghi nhận:</b> Bao gồm thông tin đăng ký tài khoản, dữ liệu truy cập thống kê, dữ liệu đặt dịch vụ, dữ liệu tương tác chatbot AI, dữ liệu khảo sát đánh giá và nội dung người dùng chia sẻ (UGC).</p>
+                    <p><b>3. Mục đích sử dụng thông tin:</b> Cung cấp dịch vụ du lịch tích hợp, cá nhân hóa gợi ý qua chatbot AI, cải thiện chất lượng nền tảng, đo lường hiệu quả hoạt động và khảo sát truyền thông.</p>
+                    <p><b>4. Công cụ đo lường và theo dõi:</b> OneTrip sử dụng Google Analytics, mã QR và UTM để thống kê lượt truy cập và đo lường hiệu quả hoạt động.</p>
+                    <p><b>5. Bảo vệ và quản lý thông tin:</b> Dữ liệu người dùng được quản lý có trách nhiệm, minh bạch theo các biện pháp kỹ thuật và quy trình kiểm soát truy cập của nền tảng.</p>
+                    <p><b>6. Chia sẻ thông tin với bên thứ ba:</b> Chỉ chia sẻ trong phạm vi cần thiết với đơn vị cung cấp dịch vụ hoặc đối tác công nghệ nhằm hoàn tất yêu cầu đặt dịch vụ của người dùng.</p>
+                    <p><b>7. Thời gian lưu trữ thông tin:</b> Dữ liệu được lưu trữ trong thời hạn phù hợp với từng nhóm thông tin và mục đích vận hành.</p>
+                    <p><b>8. Quyền của người dùng:</b> Người dùng có quyền truy cập, cập nhật, yêu cầu chỉnh sửa hoặc xóa dữ liệu cá nhân theo quy định pháp luật hiện hành.</p>
+                    <p><b>9. Cập nhật chính sách:</b> Nội dung cập nhật sẽ được công bố công khai trên website và ứng dụng OneTrip.</p>
+                    <p><b>10. Liên hệ:</b> Website: <span class="text-onetrip-light font-medium">onetrip.com</span>. OneTrip trân trọng sự tin tưởng và đồng hành của bạn trên mỗi hành trình.</p>
+                `
+            }
+        };
+
+        function openInfoModal(type) {
+            const data = footerPagesData[type];
+            if (!data) return;
+            document.getElementById('infoModalTitle').textContent = data.title;
+            document.getElementById('infoModalBody').innerHTML = data.content;
+            document.getElementById('infoModalBody').scrollTop = 0;
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+        }
     </script>
 </body>
 </html>
