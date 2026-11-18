@@ -54,6 +54,11 @@
                 </div>
                 <div class="flex items-center gap-2 md:gap-4">
                     <button id="currencyBtn" class="hidden md:block hover:bg-white/10 p-2 rounded transition">VND</button>
+					<!-- ĐỒNG HỒ -->
+                    <div id="dual-clock" class="hidden lg:flex flex-col text-[10px] text-right bg-white/10 px-2 py-1 rounded border border-white/20 mr-2 font-mono">
+                        <div>🇻🇳 <span id="clock-vn" class="font-bold text-onetrip-yellow"></span></div>
+                        <div>🇬🇧 <span id="clock-uk" class="font-bold text-gray-200"></span></div>
+                    </div>
                     <div class="flex items-center gap-1 border-r border-white/20 pr-2 md:pr-4">
                         <button onclick="setLanguage('vi')" class="hover:bg-white/20 p-1.5 rounded transition" title="Tiếng Việt">
                             <img src="https://flagcdn.com/w20/vn.png" alt="VN" class="w-6 h-4 rounded-sm object-cover border border-gray-300">
@@ -76,6 +81,9 @@
                 </button>
                 <button id="tab-ent" onclick="switchTab('ent')" class="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/10 text-gray-300 transition text-sm md:text-base whitespace-nowrap">
                     <i class="fa-solid fa-ticket"></i> <span data-i18n="tab_ent">Vui chơi Giải trí</span>
+                </button>
+				<button id="tab-trans" onclick="switchTab('trans')" class="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/10 text-gray-300 transition text-sm md:text-base whitespace-nowrap">
+                    <i class="fa-solid fa-car-side"></i> <span data-i18n="tab_trans">Di chuyển</span>
                 </button>
             </div>
         </div>
@@ -526,7 +534,66 @@
         </div>
 
     </div>
+<!-- ======================= MODULE DI CHUYỂN ======================= -->
+        <div id="app-trans" class="hidden fade-in">
+            <div id="t-home-view">
+                <!-- HERO DI CHUYỂN -->
+                <div class="bg-onetrip-gradient text-white pb-16 relative">
+                    <div class="max-w-6xl mx-auto px-4">
+                        <div class="pt-8 mb-8 md:mb-12">
+                            <h1 data-i18n="t_hero_title" class="text-3xl md:text-5xl font-bold mb-3 md:mb-4">Mọi nẻo đường, một chạm</h1>
+                            <p data-i18n="t_hero_subtitle" class="text-xl md:text-2xl text-gray-100">Đặt xe Limousine, Taxi, Tàu hỏa với giá ưu đãi cực sốc</p>
+                        </div>
+                    </div>
+                </div>
 
+               <!-- SEARCH DI CHUYỂN MỚI -->
+<div class="max-w-6xl mx-auto px-4 relative -mt-8 z-20">
+    <div class="bg-white p-1 rounded-lg border-4 border-onetrip-yellow flex flex-col lg:flex-row shadow-lg gap-1 relative">
+        
+        <!-- Điểm đón (Có Autocomplete) -->
+        <div class="flex-[1.5] flex items-center p-3 lg:border-r border-gray-300 bg-white">
+            <i class="fa-solid fa-location-arrow text-gray-400 mr-3 text-lg"></i>
+            <input type="text" id="t_pickupInput" list="locationSuggestions" autocomplete="off" data-i18n-placeholder="t_pickup" placeholder="Điểm đón..." class="w-full focus:outline-none text-gray-800 font-medium text-sm">
+        </div>
+        
+        <!-- Điểm đến (Có Autocomplete) -->
+        <div class="flex-[1.5] flex items-center p-3 lg:border-r border-gray-300 bg-white">
+            <i class="fa-solid fa-map-pin text-food-red mr-3 text-lg"></i>
+            <input type="text" id="t_dropoffInput" list="locationSuggestions" autocomplete="off" data-i18n-placeholder="t_dropoff" placeholder="Điểm đến..." class="w-full focus:outline-none text-gray-800 font-medium text-sm">
+        </div>
+        <!-- Thêm ô chọn Loại phương tiện -->
+        <div class="flex-[1.2] flex items-center p-3 lg:border-r border-gray-300 bg-white cursor-pointer">
+            <i class="fa-solid fa-car text-onetrip-blue mr-3 text-lg"></i>
+            <select id="t_vehicleSelect" class="w-full focus:outline-none text-gray-800 font-medium text-sm bg-transparent cursor-pointer truncate">
+                <option value="all">Tất cả phương tiện</option>
+                <option value="limo">Xe Limousine</option>
+				<option value="taxi">Xe máy</option>
+                <option value="taxi">Taxi (4-7 chỗ)</option>
+                <option value="train">Tàu hỏa / Tàu cao tốc</option>
+				<option value="train">Máy bay</option>
+            </select>
+        </div>
+		
+        <div class="flex-[0.8] flex items-center p-3 bg-white">
+            <i class="fa-regular fa-calendar text-gray-400 mr-3 text-lg"></i>
+            <input type="date" id="t_dateInput" class="w-full focus:outline-none text-gray-700 font-medium text-sm cursor-pointer">
+        </div>
+        <button id="t_searchBtn" onclick="showTransResultsView()" data-i18n="t_search_btn" class="bg-onetrip-blue text-white font-bold text-xl px-8 py-3 lg:py-0 hover:bg-blue-900 transition rounded lg:rounded-none">Tìm</button>
+    </div>
+</div>
+	
+                <main class="max-w-6xl mx-auto px-4 py-12 space-y-16 z-10 relative">
+                    <section>
+                        <div class="flex items-center gap-2 mb-6">
+                            <i class="fa-solid fa-route text-onetrip-light text-xl"></i>
+                            <h2 data-i18n="t_rec_title" class="text-2xl font-bold text-gray-800">Tuyến đường phổ biến</h2>
+                        </div>
+                        <div id="t_results_container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                    </section>
+                </main>
+            </div>
+        </div>
     <!-- MODAL THÔNG TIN ẨM THỰC -->
     <div id="restModal" class="fixed inset-0 bg-black/60 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-xl w-11/12 md:w-2/3 lg:w-1/2 max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-300" id="restModalContent" onclick="event.stopPropagation()">
@@ -803,7 +870,24 @@
                 no_stays: "Không tìm thấy chỗ nghỉ.", price_note: "Giá 1 đêm, 2 người lớn",
                 no_ent: "Không có trải nghiệm nào phù hợp.", reviews: "đánh giá", instant: "Xác nhận tức thì", from_price: "Chỉ từ",
                 chat_title: "Trợ lý OneTrip AI", chat_placeholder: "Nhập yêu cầu...",
-				u_adults: "người lớn", u_children: "trẻ em", u_rooms: "phòng"
+				u_adults: "người lớn", u_children: "trẻ em", u_rooms: "phòng",
+				tab_trans: "Di chuyển",
+                t_hero_title: "Mọi nẻo đường, một chạm",
+                t_hero_subtitle: "Đặt xe Limousine, Taxi, Tàu hỏa với giá ưu đãi cực sốc",
+                t_rec_title: "Tuyến đường phổ biến",
+				chat_title: "Trợ lý OneTrip AI", chat_placeholder: "Nhập yêu cầu...",
+				u_adults: "người lớn", u_children: "trẻ em", u_rooms: "phòng",
+				tab_trans: "Di chuyển",
+                t_hero_title: "Mọi nẻo đường, một chạm",
+                t_hero_subtitle: "Đặt xe Limousine, Taxi, Tàu hỏa với giá ưu đãi cực sốc",
+                t_rec_title: "Tuyến đường phổ biến",
+                t_pickup: "Điểm đón...",
+                t_dropoff: "Điểm đến...",
+                t_search_btn: "Tìm xe",
+                t_time: "Thời gian",
+                t_method: "Cách đi",
+                t_book: "Đặt xe",
+                t_map: "Bản đồ"
             },
             en: {
                 tab_food: "Culinary", tab_stays: "Stays", tab_ent: "Entertainment", loc_all: "Nationwide", search_btn: "Search", btn_filter: "Filter", btn_back: "Go Back", btn_view_all: "View all",
@@ -828,7 +912,24 @@
                 no_stays: "No properties found.", price_note: "Price per night, 2 adults",
                 no_ent: "No matching experiences found.", reviews: "reviews", instant: "Instant Confirmation", from_price: "From",
                 chat_title: "OneTrip AI Assistant", chat_placeholder: "Type your request...",
-				u_adults: "adults", u_children: "children", u_rooms: "rooms"
+				u_adults: "adults", u_children: "children", u_rooms: "rooms",
+				tab_trans: "Transport",
+                t_hero_title: "Every route, one tap",
+                t_hero_subtitle: "Book Limousines, Taxis, Trains with shocking deals",
+                t_rec_title: "Popular Routes",
+				chat_title: "OneTrip AI Assistant", chat_placeholder: "Type your request...",
+				u_adults: "adults", u_children: "children", u_rooms: "rooms",
+				tab_trans: "Transport",
+                t_hero_title: "Every route, one tap",
+                t_hero_subtitle: "Book Limousines, Taxis, Trains with shocking deals",
+                t_rec_title: "Popular Routes",
+                t_pickup: "Pick-up location...",
+                t_dropoff: "Drop-off location...",
+                t_search_btn: "Search",
+                t_time: "Time",
+                t_method: "Method",
+                t_book: "Book Now",
+                t_map: "Map"
             }
         };
 
@@ -838,6 +939,10 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) el.textContent = t[key];
+            });
+			document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
             });
             const sFilterTitle = document.querySelector('#s-results-view .sticky h3');
             if(sFilterTitle) sFilterTitle.textContent = t.s_filter_title;
@@ -873,27 +978,45 @@
                 }
             });
             if(typeof updateAllGuestTexts === 'function') updateAllGuestTexts();
-            renderFood(); renderStays(); renderEnt();
+            renderFood(); renderStays(); renderEnt(); renderTrans();
             if(typeof initChat === 'function') initChat();
         }
 
         // ================= XỬ LÝ CHUYỂN TAB & VIEW =================
         function switchTab(tab) {
-            ['app-food', 'app-stays', 'app-ent'].forEach(id => { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('block'); });
-            ['tab-food', 'tab-stays', 'tab-ent'].forEach(id => { document.getElementById(id).classList.remove('bg-white/20', 'text-white'); document.getElementById(id).classList.add('text-gray-300', 'hover:bg-white/10'); });
-            document.getElementById(`app-${tab}`).classList.remove('hidden'); document.getElementById(`app-${tab}`).classList.add('block');
-            document.getElementById(`tab-${tab}`).classList.remove('text-gray-300', 'hover:bg-white/10'); document.getElementById(`tab-${tab}`).classList.add('bg-white/20', 'text-white');
+            ['app-food', 'app-stays', 'app-ent', 'app-trans'].forEach(id => { 
+                document.getElementById(id).classList.add('hidden'); 
+                document.getElementById(id).classList.remove('block'); 
+            });
+            ['tab-food', 'tab-stays', 'tab-ent', 'tab-trans'].forEach(id => { 
+                document.getElementById(id).classList.remove('bg-white/20', 'text-white'); 
+                document.getElementById(id).classList.add('text-gray-300', 'hover:bg-white/10'); 
+            });
+            document.getElementById(`app-${tab}`).classList.remove('hidden'); 
+            document.getElementById(`app-${tab}`).classList.add('block');
+            document.getElementById(`tab-${tab}`).classList.remove('text-gray-300', 'hover:bg-white/10'); 
+            document.getElementById(`tab-${tab}`).classList.add('bg-white/20', 'text-white');
         }
         function showAllHomes() {
-    document.getElementById('home-view').classList.remove('hidden'); 
-    document.getElementById('search-results-view').classList.add('hidden');
-    document.getElementById('premium-results-view').classList.add('hidden'); // Thêm dòng này
-    document.getElementById('s-home-view').classList.remove('hidden'); 
-    document.getElementById('s-results-view').classList.add('hidden');
-    document.getElementById('e-home-view').classList.remove('hidden'); 
-    document.getElementById('e-results-view').classList.add('hidden');
-    window.scrollTo(0,0);
-}
+			document.getElementById('home-view').classList.remove('hidden'); 
+            document.getElementById('search-results-view').classList.add('hidden');
+            document.getElementById('premium-results-view').classList.add('hidden'); 
+            document.getElementById('s-home-view').classList.remove('hidden'); 
+            document.getElementById('s-results-view').classList.add('hidden');
+            document.getElementById('e-home-view').classList.remove('hidden'); 
+            document.getElementById('e-results-view').classList.add('hidden');
+			window.scrollTo(0,0);
+		}
+		// ================= CODE ĐỒNG HỒ KÉP =================
+        function startClocks() {
+            setInterval(() => {
+                const now = new Date();
+                const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                document.getElementById('clock-vn').textContent = now.toLocaleString('vi-VN', { ...options, timeZone: 'Asia/Ho_Chi_Minh' });
+                document.getElementById('clock-uk').textContent = now.toLocaleString('vi-VN', { ...options, timeZone: 'Europe/London' });
+            }, 1000);
+        }
+        startClocks();
         function showResultsView() { document.getElementById('home-view').classList.add('hidden'); document.getElementById('search-results-view').classList.remove('hidden'); window.scrollTo(0,0); }
         function showStaysResultsView() { document.getElementById('s-home-view').classList.add('hidden'); document.getElementById('s-results-view').classList.remove('hidden'); window.scrollTo(0,0); }
         function showEntResultsView() { document.getElementById('e-home-view').classList.add('hidden'); document.getElementById('e-results-view').classList.remove('hidden'); window.scrollTo(0,0); }
@@ -903,7 +1026,52 @@
     document.getElementById('premium-results-view').classList.remove('hidden');
     window.scrollTo(0,0);
 }
+// ================= DATA & RENDER MODULE DI CHUYỂN =================
+        const transData = [
+            { id: 't1', routeVi: 'TP.HCM ➝ Vũng Tàu', routeEn: 'HCMC ➝ Vung Tau', methodsVi: 'Limousine, Taxi 4 chỗ, Tàu cao tốc', methodsEn: 'Limousine, 4-seat Taxi, Speedboat', timeVi: '2h - 2.5h', timeEn: '2h - 2.5h', price: 250000, salePrice: 160000, img: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Ho+Chi+Minh&daddr=Vung+Tau' },
+            { id: 't2', routeVi: 'Hà Nội ➝ Sapa', routeEn: 'Hanoi ➝ Sapa', methodsVi: 'Xe giường nằm đôi, Tàu hỏa', methodsEn: 'Double Sleeper Bus, Train', timeVi: '6h - 8h', timeEn: '6h - 8h', price: 450000, salePrice: 320000, img: 'https://images.unsplash.com/photo-1504681869696-d977211a5f4c?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Ha+Noi&daddr=Sapa' },
+            { id: 't3', routeVi: 'Đà Nẵng ➝ Hội An', routeEn: 'Da Nang ➝ Hoi An', methodsVi: 'Taxi điện, Shuttle Bus', methodsEn: 'Electric Taxi, Shuttle Bus', timeVi: '45 phút', timeEn: '45 mins', price: 150000, salePrice: 89000, img: 'https://images.unsplash.com/photo-1559521783-1d1599583485?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Da+Nang&daddr=Hoi+An' },
+            { id: 't4', routeVi: 'Sân bay Cam Ranh ➝ Nha Trang', routeEn: 'Cam Ranh Airport ➝ Nha Trang', methodsVi: 'Taxi sân bay, Bus', methodsEn: 'Airport Taxi, Bus', timeVi: '40 phút', timeEn: '40 mins', price: 300000, salePrice: 199000, img: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Cam+Ranh+Airport&daddr=Nha+Trang' },
+            { id: 't5', routeVi: 'Sân bay Nội Bài ➝ Trung tâm HN', routeEn: 'Noi Bai Airport ➝ Hanoi Center', methodsVi: 'Xe điện, Taxi 4-7 chỗ, Bus', methodsEn: 'Electric Car, 4-7 seat Taxi, Bus', timeVi: '40 - 50 phút', timeEn: '40 - 50 mins', price: 350000, salePrice: 250000, img: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Noi+Bai+Airport&daddr=Hanoi' },
+            { id: 't6', routeVi: 'TP.HCM ➝ Đà Lạt', routeEn: 'HCMC ➝ Da Lat', methodsVi: 'Xe giường nằm phòng VIP, Limousine', methodsEn: 'VIP Cabin Bus, Limousine', timeVi: '6h - 7h', timeEn: '6h - 7h', price: 450000, salePrice: 350000, img: 'https://images.unsplash.com/photo-1557315360-6a350ab4eccd?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Ho+Chi+Minh&daddr=Da+Lat' },
+            { id: 't7', routeVi: 'Rạch Giá ➝ Phú Quốc', routeEn: 'Rach Gia ➝ Phu Quoc', methodsVi: 'Tàu cao tốc Superdong, PQ Express', methodsEn: 'Superdong Speedboat, PQ Express', timeVi: '2.5h', timeEn: '2.5h', price: 330000, salePrice: 280000, img: 'https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Rach+Gia&daddr=Phu+Quoc' },
+            { id: 't8', routeVi: 'Sân bay Liên Khương ➝ Đà Lạt', routeEn: 'Lien Khuong Airport ➝ Da Lat', methodsVi: 'Taxi sân bay, Bus trung chuyển', methodsEn: 'Airport Taxi, Shuttle Bus', timeVi: '45 phút', timeEn: '45 mins', price: 250000, salePrice: 160000, img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80', mapUrl: 'https://maps.google.com/?saddr=Lien+Khuong+Airport&daddr=Da+Lat' }
+        ];
 
+        function renderTrans() {
+            const t_trans = staticTranslations[currentLang];
+            document.getElementById('t_results_container').innerHTML = transData.map(t => {
+                const routeName = currentLang === 'en' ? t.routeEn : t.routeVi;
+                const methodStr = currentLang === 'en' ? t.methodsEn : t.methodsVi;
+                const timeStr = currentLang === 'en' ? t.timeEn : t.timeVi;
+
+                return `
+                <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden card-hover flex flex-col">
+                    <div class="relative h-48">
+                        <img src="${t.img}" class="w-full h-full object-cover">
+                        <div class="absolute top-3 left-3 bg-white text-onetrip-blue text-xs font-bold px-3 py-1 rounded shadow-md flex items-center gap-2">
+                            <i class="fa-solid fa-clock"></i> ${t_trans.t_time}: ${timeStr}
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1 justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800 mb-2">${routeName}</h3>
+                            <p class="text-sm text-gray-600 mb-3"><i class="fa-solid fa-car text-onetrip-yellow mr-2"></i><b>${t_trans.t_method}:</b> ${methodStr}</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <div class="flex items-baseline gap-2 mb-4">
+                                <span class="text-sm text-gray-400 line-through">${formatMoney(t.price, currentLang)}</span>
+                                <span class="text-2xl font-extrabold text-food-red">${formatMoney(t.salePrice, currentLang)}</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-onetrip-blue text-white py-2 rounded-lg font-bold hover:bg-blue-800 transition shadow-sm text-sm" onclick="alert('${t_trans.alert_dev}')">${t_trans.t_book}</button>
+                                <a href="${t.mapUrl}" target="_blank" class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg font-bold hover:bg-gray-200 transition text-center border border-gray-300 text-sm flex items-center justify-center gap-1"><i class="fa-solid fa-map"></i> ${t_trans.t_map}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+        }
         // ================= TÌM KIẾM AUTOCOMPLETE =================
         function removeAccents(str) { return str.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").toLowerCase(); }
         function populateSelect(id) {
@@ -1245,6 +1413,7 @@ function renderFood() {
             setupAutocomplete('locationInput', 'locationDropdown', 'locContainer');
             setupAutocomplete('s_locInput', 's_locationDropdown', 's_locContainer');
             setupAutocomplete('e_locInput', 'e_locationDropdown', 'e_locContainer');
+			setupAutocomplete('t_locInput', 't_locationDropdown', 't_locContainer');
             document.getElementById('locationInput').value = "Toàn quốc"; document.getElementById('s_locInput').value = "Toàn quốc"; document.getElementById('e_locInput').value = "Toàn quốc";
             
             bindSearch('searchBtn', 'locationInput', 'filterLoc', (v) => filterFoodCity = v, renderFood, showResultsView);
@@ -1309,7 +1478,7 @@ function renderFood() {
             bindCounter('e_cMinus', 'ent', 'children', -1, 0);
             bindCounter('e_cPlus', 'ent', 'children', 1, 0);
 
-            renderFood(); renderStays(); renderEnt();
+            renderFood(); renderStays(); renderEnt(); renderTrans();
             setTimeout(() => initChat(), 800);
         });
 
@@ -1501,6 +1670,119 @@ function renderFood() {
         function closeInfoModal() {
             document.getElementById('infoModal').classList.add('hidden');
         }
+		// Hàm loại bỏ dấu tiếng Việt để tìm kiếm linh hoạt hơn
+function removeAccents(str) {
+    return str.normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/đ/g, 'd')
+              .replace(/Đ/g, 'D');
+}
+
+// Cài đặt tính năng gợi ý tìm kiếm
+function setupAutocomplete(inputId, dropdownId, containerId) {
+    const input = document.getElementById(inputId);
+    const dropdown = document.getElementById(dropdownId);
+    const container = document.getElementById(containerId);
+
+    if (!input || !dropdown || !container) return;
+
+    input.addEventListener('input', function() {
+        const val = this.value.trim();
+        dropdown.innerHTML = '';
+        
+        if (!val) {
+            dropdown.classList.add('hidden');
+            return;
+        }
+
+        const searchStr = removeAccents(val.toLowerCase());
+        const filtered = cityList.filter(city => 
+            removeAccents(city.toLowerCase()).includes(searchStr)
+        );
+
+        if (filtered.length > 0) {
+            filtered.forEach(city => {
+                const div = document.createElement('div');
+                div.className = 'loc-item text-sm text-gray-700';
+                div.innerText = city;
+                // Khi click vào gợi ý -> Gán giá trị vào input và ẩn dropdown
+                div.onclick = function() {
+                    input.value = city;
+                    dropdown.classList.add('hidden');
+                };
+                dropdown.appendChild(div);
+            });
+        } else {
+            dropdown.innerHTML = '<div class="loc-item text-sm text-gray-500 italic">Không tìm thấy địa điểm</div>';
+        }
+        dropdown.classList.remove('hidden');
+    });
+
+    // Ẩn dropdown khi click chuột ra ngoài ô tìm kiếm
+    document.addEventListener('click', function(e) {
+        if (!container.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+}
+
+// Kích hoạt cho cả 3 module
+setupAutocomplete('locationInput', 'locationDropdown', 'locContainer'); // Ẩm thực
+setupAutocomplete('s_locInput', 's_locationDropdown', 's_locContainer'); // Lưu trú
+setupAutocomplete('e_locInput', 'e_locationDropdown', 'e_locContainer'); // Giải trí
+setupAutocomplete('t_locInput', 't_locationDropdown', 't_locContainer');
     </script>
+	<!-- BẮT ĐẦU PHẦN THÊM VÀO (BẢN SỬA LỖI) -->
+<script>
+    (function() { 
+        // 1. Dùng tên mảng khác và bọc trong hàm ẩn danh để KHÔNG BAO GIỜ bị trùng với code cũ
+        const safeCityList = [
+            "Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Cần Thơ", 
+            "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh", 
+            "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước", "Bình Thuận", "Cà Mau", 
+            "Cao Bằng", "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp", 
+            "Gia Lai", "Hà Giang", "Hà Nam", "Hà Tĩnh", "Hải Dương", "Hậu Giang", 
+            "Hòa Bình", "Hưng Yên", "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", 
+            "Lâm Đồng", "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An", 
+            "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", 
+            "Quảng Ninh", "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", 
+            "Thái Nguyên", "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "Trà Vinh", 
+            "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái", "Phú Yên"
+        ];
+
+        function initLocations() {
+            // Đổ vào Select
+            const dropdownIds = ['filterLoc', 'filterPremiumLoc', 's_filterLoc', 'e_filterLoc'];
+            dropdownIds.forEach(id => {
+                const selectElement = document.getElementById(id);
+                if (selectElement) {
+                    selectElement.innerHTML = '<option value="all">Chọn địa điểm...</option>'; 
+                    safeCityList.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city; 
+                        option.textContent = city;
+                        selectElement.appendChild(option);
+                    });
+                }
+            });
+
+            // Đổ vào Datalist
+            if (!document.getElementById('locationSuggestions')) {
+                const datalist = document.createElement('datalist');
+                datalist.id = 'locationSuggestions';
+                safeCityList.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    datalist.appendChild(option);
+                });
+                document.body.appendChild(datalist);
+            }
+        }
+
+        // 2. Chạy sau khi trang đã render được 0.5 giây để tránh việc thẻ HTML chưa kịp xuất hiện
+        setTimeout(initLocations, 500); 
+    })();
+</script>
+<!-- KẾT THÚC PHẦN THÊM VÀO -->
 </body>
 </html>
