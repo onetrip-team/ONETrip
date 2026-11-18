@@ -131,11 +131,19 @@
 
                 <main class="max-w-6xl mx-auto px-4 py-12 space-y-16 z-10 relative">
                     <!-- Premium Food -->
-                    <section id="premium">
-                        <div class="flex items-center gap-2 mb-2"><i class="fa-solid fa-bell-concierge text-onetrip-yellow text-xl"></i><h2 data-i18n="premium_title" class="text-2xl font-bold text-gray-800">Đặt trước</h2></div>
-                        <p data-i18n="premium_desc" class="text-gray-500 mb-6">Trải nghiệm ẩm thực tinh tế, sang trọng tại các thành phố lớn</p>
-                        <div id="premium-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-                    </section>
+<section id="premium">
+    <div class="flex justify-between items-end mb-6">
+        <div>
+            <div class="flex items-center gap-2 mb-2">
+                <i class="fa-solid fa-bell-concierge text-onetrip-yellow text-xl"></i>
+                <h2 data-i18n="premium_title" class="text-2xl font-bold text-gray-800 cursor-pointer hover:text-onetrip-blue transition" onclick="showPremiumResultsView()">Đặt trước</h2>
+            </div>
+            <p data-i18n="premium_desc" class="text-gray-500">Trải nghiệm ẩm thực tinh tế, sang trọng tại các thành phố lớn</p>
+        </div>
+        <button onclick="showPremiumResultsView()" data-i18n="btn_view_all" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition text-sm font-medium shadow-sm">Xem tất cả</button>
+    </div>
+    <div id="premium-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
                     <!-- Recommended Food -->
                     <section class="bg-orange-50 -mx-4 px-4 py-8 md:p-8 rounded-xl border border-orange-100">
                         <div class="flex justify-between items-end mb-6">
@@ -206,8 +214,34 @@
                     <p class="text-gray-500 mb-6 font-medium"><span data-i18n="found_text_1">Đã tìm thấy</span> <span id="result-count" class="text-gray-800 font-bold">0</span> <span data-i18n="found_text_2">địa điểm</span></p>
                     <div id="full-results-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
                 </div>
+			</div>
+            <!-- KẾT QUẢ ĐẶT TRƯỚC (PREMIUM) -->
+<div id="premium-results-view" class="hidden min-h-screen pb-12 bg-gray-50">
+    <div class="bg-white border-b border-gray-200 sticky top-16 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <button onclick="showAllHomes()" class="text-gray-500 hover:text-onetrip-blue transition flex items-center gap-2 font-medium bg-gray-100 px-3 py-2 rounded-lg">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="btn_back">Quay lại</span>
+                </button>
+                <h1 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                    <i class="fa-solid fa-bell-concierge text-onetrip-yellow"></i> <span data-i18n="premium_title">Đặt trước</span>
+                </h1>
+            </div>
+            <div class="w-full md:w-auto flex gap-2">
+                <select id="filterPremiumLoc" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium border border-gray-200 focus:outline-none min-w-[150px]"></select>
+                <button onclick="applyPremiumFilters()" class="bg-onetrip-blue text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-900 transition flex items-center gap-2">
+                    <i class="fa-solid fa-filter"></i> <span data-i18n="btn_filter">Lọc</span>
+                </button>
             </div>
         </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 mt-8">
+        <p class="text-gray-500 mb-6 font-medium">
+            <span data-i18n="found_text_1">Đã tìm thấy</span> <span id="premium-result-count" class="text-gray-800 font-bold">0</span> <span data-i18n="found_text_2">địa điểm</span>
+        </p>
+        <div id="full-premium-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+</div>
 
         <!-- ======================= MODULE LƯU TRÚ ======================= -->
         <div id="app-stays" class="hidden fade-in">
@@ -629,7 +663,30 @@
             { id: 'p4', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 9.6, price: 1200000, salePrice: 890000, img: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=The+Deck+Saigon', phone: '028 3744 6632',
               vi: { name: 'The Deck Saigon', tag: 'Fusion Âu Á', loc: 'TP.HCM', rate_txt: 'Đẳng cấp', perk: 'Giảm 26% + Bàn view sông VIP', desc: 'Nhà hàng ven sông Sài Gòn, nơi lý tưởng ngắm hoàng hôn với thực đơn Fusion.' },
               en: { name: 'The Deck Saigon', tag: 'Asian Fusion', loc: 'HCMC', rate_txt: 'Superb', perk: '26% Off + VIP River View', desc: 'Riverside restaurant.' } },
-            
+            { id: 'p5', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 9.4, price: 850000, salePrice: 630000, img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Shri+Restaurant+Lounge+Quận+3', phone: '028 3827 9631',
+              vi: { name: 'Shri Restaurant & Lounge', tag: 'Rooftop Dining', loc: 'TP.HCM', rate_txt: 'Tuyệt hảo', perk: 'Giảm 26% + Tặng 1 ly Cocktail ngắm hoàng hôn', desc: 'Nhà hàng tầng thượng sang trọng bậc nhất Sài Gòn với tầm nhìn toàn cảnh trung tâm lung linh về đêm.' },
+              en: { name: 'Shri Restaurant & Lounge', tag: 'Rooftop Dining', loc: 'HCMC', rate_txt: 'Superb', perk: '26% Off + Free Sunset Cocktail', desc: 'Iconic rooftop dining overlooking Saigon skyline.' } },
+            { id: 'p6', type: 'premium', city: 'TP. Hà Nội', rating: 9.5, price: 950000, salePrice: 710000, img: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Home+Hanoi+Restaurant', phone: '024 3939 2222',
+              vi: { name: 'Home Hanoi Restaurant', tag: 'Ẩm Thực Hà Thành', loc: 'Hà Nội', rate_txt: 'Đẳng cấp', perk: 'Giảm 25% + Tặng set trà sen Tây Hồ', desc: 'Không gian biệt thự Pháp cổ tinh tế, tôn vinh tinh hoa ẩm thực truyền thống Hà Nội.' },
+              en: { name: 'Home Hanoi Restaurant', tag: 'Hanoian Cuisine', loc: 'Hanoi', rate_txt: 'Exceptional', perk: '25% Off + Free West Lake Lotus Tea', desc: 'Refined Hanoian dishes inside a charming French colonial villa.' } },
+            { id: 'p7', type: 'premium', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 9.7, price: 1500000, salePrice: 1120000, img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=La+Maison+1888+Đà+Nẵng', phone: '0236 3938 888',
+              vi: { name: 'La Maison 1888', tag: 'Fine Dining Pháp', loc: 'Đà Nẵng', rate_txt: 'Xuất sắc', perk: 'Giảm 25% + Tặng rượu vang khai vị', desc: 'Nhà hàng đạt sao Michelin đầu tiên tại miền Trung, kiến trúc dinh thự Đông Dương lộng lẫy.' },
+              en: { name: 'La Maison 1888', tag: 'French Fine Dining', loc: 'Da Nang', rate_txt: 'Masterpiece', perk: '25% Off + Welcome Sparkling Wine', desc: 'Michelin-starred French gastronomy in an Indochine mansion.' } },
+            { id: 'p8', type: 'premium', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 9.3, price: 780000, salePrice: 570000, img: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Cuc+Gach+Quan+Quận+1', phone: '028 3848 0144',
+              vi: { name: 'Cục Gạch Quán', tag: 'Cơm Nhà Truyền Thống', loc: 'TP.HCM', rate_txt: 'Tuyệt vời', perk: 'Giảm 27% + Tặng tráng miệng chè hạt sen', desc: 'Điểm hẹn ẩm thực thuần Việt mộc mạc nhưng đẳng cấp, từng đón tiếp nhiều ngôi sao quốc tế.' },
+              en: { name: 'Cuc Gach Quan', tag: 'Authentic Vietnamese', loc: 'HCMC', rate_txt: 'Wonderful', perk: '27% Off + Free Lotus Seed Dessert', desc: 'Rustic yet upscale home-style Vietnamese dining.' } },
+            { id: 'p9', type: 'premium', city: 'Khánh Hòa (Khánh Hòa + Ninh Thuận)', rating: 9.1, price: 650000, salePrice: 480000, img: 'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Sailing+Club+Nha+Trang', phone: '0258 3524 628',
+              vi: { name: 'Sailing Club Nha Trang', tag: 'Ẩm Thực Ven Biển', loc: 'Nha Trang', rate_txt: 'Rất tốt', perk: 'Giảm 26% + Ghế lười sát biển miễn phí', desc: 'Thưởng thức hải sản Địa Trung Hải và Á Đông ngay trên bãi cát trắng vịnh Nha Trang.' },
+              en: { name: 'Sailing Club Nha Trang', tag: 'Beachfront Dining', loc: 'Nha Trang', rate_txt: 'Very good', perk: '26% Off + Free Beach Lounger', desc: 'Mediterranean and Asian seafood right on Nha Trang beach.' } },
+            { id: 'p10', type: 'premium', city: 'Lâm Đồng (Đắk Nông + Lâm Đồng + Bình Thuận)', rating: 9.0, price: 550000, salePrice: 410000, img: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Le+Rabelais+Dalat+Palace', phone: '0263 3825 444',
+              vi: { name: 'Le Rabelais - Dalat Palace', tag: 'Ẩm Thực Châu Âu', loc: 'Đà Lạt', rate_txt: 'Đẳng cấp', perk: 'Giảm 25% + Tặng súp kem nấm rừng', desc: 'Bữa tối lãng mạn bên ánh nến giữa không gian di sản hơn 100 năm tuổi tại trung tâm Đà Lạt.' },
+              en: { name: 'Le Rabelais - Dalat Palace', tag: 'European Gastronomy', loc: 'Da Lat', rate_txt: 'Superb', perk: '25% Off + Free Wild Mushroom Soup', desc: 'Romantic candlelit European dining in a heritage palace.' } },
+            { id: 'p11', type: 'premium', city: 'TP. Huế', rating: 9.2, price: 600000, salePrice: 450000, img: 'https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=Ancient+Hue+Garden+Houses', phone: '0234 3590 902',
+              vi: { name: 'Ancient Hue Garden Houses', tag: 'Ẩm Thực Cung Đình', loc: 'Huế', rate_txt: 'Đỉnh cao', perk: 'Giảm 25% + Biểu diễn nhã nhạc cung đình', desc: 'Trải nghiệm yến tiệc hoàng gia tinh xảo trong quần thể nhà rường cổ kính xứ Huế.' },
+              en: { name: 'Ancient Hue Garden Houses', tag: 'Royal Hue Cuisine', loc: 'Hue', rate_txt: 'Excellent', perk: '25% Off + Royal Court Music', desc: 'Imperial banquet inside historic Hue garden houses.' } },
+            { id: 'p12', type: 'premium', city: 'TP. Hà Nội', rating: 9.4, price: 1100000, salePrice: 820000, img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80', map_url: 'https://maps.google.com/?q=T.U.N.G+Dining+Ha+Noi', phone: '085 993 3970',
+              vi: { name: 'T.U.N.G Dining', tag: 'Tasting Menu', loc: 'Hà Nội', rate_txt: 'Tuyệt hảo', perk: 'Giảm 25% + Tặng món khai vị sáng tạo', desc: 'Hành trình vị giác 18 món theo mùa đầy nghệ thuật, nằm trong Top 100 nhà hàng tốt nhất châu Á.' },
+              en: { name: 'T.U.N.G Dining', tag: 'Tasting Menu', loc: 'Hanoi', rate_txt: 'Perfect', perk: '25% Off + Complimentary Amuse-Bouche', desc: '18-course seasonal tasting menu ranked among Asia’s Top 100.' } },
             { id: 'r1', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.5, price: 75000, salePrice: 55000, img: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '028 3829 7943',
               vi: { name: 'Phở Hòa Pasteur', loc: 'TP.HCM', perk: 'Giảm 27% + Tặng quẩy giòn', desc: 'Quán phở lâu đời bậc nhất Sài Gòn với hương vị nước dùng đậm đà.' },
               en: { name: 'Pho Hoa Pasteur', loc: 'HCMC', perk: '27% Off + Free Breadsticks', desc: 'Oldest Pho in Saigon.' } },
@@ -647,7 +704,31 @@
               en: { name: 'Huong Lien Bun Cha', loc: 'Hanoi', perk: '25% Off + Free Spring Roll', desc: 'Served President Obama.' } },
             { id: 'r6', type: 'recommended', city: 'TP. Hà Nội', rating: 4.7, price: 65000, salePrice: 49000, img: 'https://nhandan.vn/special/chuyen-pho-thin-ha-noi/assets/hbdP4w9mKl/e18d98eb496e9330ca7f-1677386689100-16773866892371645639692-1920x1440.jpg', map_url: '#', phone: '098 765 4321',
               vi: { name: 'Phở Thìn Lò Đúc', loc: 'Hà Nội', perk: 'Giảm 25% + Tặng trà đá/quẩy', desc: 'Đặc trưng với món phở bò tái lăn ngập hành lá thơm nức mũi.' },
-              en: { name: 'Thin Pho Lo Duc', loc: 'Hanoi', perk: '25% Off + Free Iced Tea', desc: 'Stir-fried rare beef Pho.' } }
+              en: { name: 'Thin Pho Lo Duc', loc: 'Hanoi', perk: '25% Off + Free Iced Tea', desc: 'Stir-fried rare beef Pho.' } },
+			{ id: 'r7', type: 'recommended', city: 'TP. Đà Nẵng (Quảng Nam + TP. Đà Nẵng)', rating: 4.9, price: 35000, salePrice: 26000, img: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0235 3914 555',
+              vi: { name: 'Bánh Mì Phượng Hội An', loc: 'Hội An', perk: 'Giảm 26% + Tặng trà đào sả', desc: 'Tiệm bánh mì trứ danh phố cổ với vỏ giòn rụm và nước sốt gia truyền đậm đà.' },
+              en: { name: 'Banh Mi Phuong Hoi An', loc: 'Hoi An', perk: '26% Off + Free Peach Tea', desc: 'World-famous crispy banh mi with secret sauce in Hoi An.' } },
+            { id: 'r8', type: 'recommended', city: 'TP. Huế', rating: 4.7, price: 55000, salePrice: 40000, img: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0234 3826 789',
+              vi: { name: 'Bún Bò Huế Bà Tuyết', loc: 'Huế', perk: 'Giảm 27% + Tặng chè bột lọc heo quay', desc: 'Nước dùng đậm vị mắm ruốc Huế, giò heo mềm béo và chả cua thơm ngon.' },
+              en: { name: 'Ba Tuyet Bun Bo Hue', loc: 'Hue', perk: '27% Off + Free Royal Sweet Soup', desc: 'Authentic Hue spicy beef noodle soup with crab cake.' } },
+            { id: 'r9', type: 'recommended', city: 'Lâm Đồng (Đắk Nông + Lâm Đồng + Bình Thuận)', rating: 4.6, price: 120000, salePrice: 90000, img: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0263 3511 888',
+              vi: { name: 'Lẩu Gà Lá É Tao Ngộ', loc: 'Đà Lạt', perk: 'Giảm 25% + Tặng thêm đĩa nấm & rau', desc: 'Nồi lẩu nóng hổi cay nhẹ mùi lá é đặc trưng giữa tiết trời se lạnh Đà Lạt.' },
+              en: { name: 'Tao Ngo Chicken Hotpot', loc: 'Da Lat', perk: '25% Off + Extra Mushrooms & Veggies', desc: 'Steaming chicken hotpot with aromatic basil leaves in chilly Da Lat.' } },
+            { id: 'r10', type: 'recommended', city: 'TP. Cần Thơ (Sóc Trăng + Hậu Giang + TP. Cần Thơ)', rating: 4.5, price: 65000, salePrice: 49000, img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '0292 3812 345',
+              vi: { name: 'Bánh Xèo Mười Xiềm', loc: 'Cần Thơ', perk: 'Giảm 25% + Miễn phí nước sâm mát lạnh', desc: 'Bánh xèo miền Tây vàng giòn nhân củ hủ dừa, tôm thịt ăn kèm rổ rau rừng.' },
+              en: { name: 'Muoi Xiem Banh Xeo', loc: 'Can Tho', perk: '25% Off + Free Herbal Drink', desc: 'Crispy Mekong Delta savory pancake with coconut heart and shrimp.' } },
+			{ id: 'r11', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.7, price: 85000, salePrice: 63000, img: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '028 3839 8233',
+              vi: { name: 'Hủ Tiếu Nam Vang Nhân Quán', loc: 'TP.HCM', perk: 'Giảm 26% + Tặng xí quách thêm', desc: 'Nước dùng ngọt thanh hầm từ xương ống, topping tôm tươi, thịt bằm và gan đầy đặn.' },
+              en: { name: 'Nhan Quan Hu Tieu Nam Vang', loc: 'HCMC', perk: '26% Off + Extra Pork Bone', desc: 'Clear savory pork broth noodle soup loaded with fresh shrimp and minced pork.' } },
+            { id: 'r12', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.8, price: 40000, salePrice: 30000, img: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '028 3925 7789',
+              vi: { name: 'Bánh Mì Huynh Hoa', loc: 'TP.HCM', perk: 'Giảm 25% + Tặng chai sữa đậu nành', desc: 'Ổ bánh mì khổng lồ trứ danh Quận 1 với pate béo ngậy và hàng chục lớp chả nguội.' },
+              en: { name: 'Huynh Hoa Banh Mi', loc: 'HCMC', perk: '25% Off + Free Soy Milk', desc: 'Legendary District 1 loaded baguette packed with rich pate and cold cuts.' } },
+            { id: 'r13', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.6, price: 70000, salePrice: 52000, img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '028 3824 6868',
+              vi: { name: 'Bánh Xèo 46A Đinh Công Tráng', loc: 'TP.HCM', perk: 'Giảm 26% + Tặng chè đậu xanh', desc: 'Bánh xèo vỏ mỏng giòn rụm nhân tôm thịt giá đỗ, cuốn cùng đủ loại rau cải xanh mướt.' },
+              en: { name: 'Banh Xeo 46A Dinh Cong Trang', loc: 'HCMC', perk: '26% Off + Free Mung Bean Dessert', desc: 'Crispy golden Vietnamese savory crepe served with fresh herbs and sweet fish sauce.' } },
+            { id: 'r14', type: 'recommended', city: 'TP. Hồ Chí Minh (Bình Dương + TP. Hồ Chí Minh + Bà Rịa - Vũng Tàu)', rating: 4.7, price: 150000, salePrice: 110000, img: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80', map_url: '#', phone: '090 366 8899',
+              vi: { name: 'Ốc Đào Nguyễn Trãi', loc: 'TP.HCM', perk: 'Giảm 27% + Tặng đĩa ốc len xào dừa', desc: 'Thiên đường ốc Sài Gòn với đủ các món rang muối, xào bơ tỏi thơm nức mũi.' },
+              en: { name: 'Oc Dao Nguyen Trai', loc: 'HCMC', perk: '27% Off + Free Coconut Snails', desc: 'Famous Saigon street seafood spot known for garlic butter and salted chili snails.' } }
         ];
 
         // 2. DATA LƯU TRÚ
@@ -804,14 +885,24 @@
             document.getElementById(`tab-${tab}`).classList.remove('text-gray-300', 'hover:bg-white/10'); document.getElementById(`tab-${tab}`).classList.add('bg-white/20', 'text-white');
         }
         function showAllHomes() {
-            document.getElementById('home-view').classList.remove('hidden'); document.getElementById('search-results-view').classList.add('hidden');
-            document.getElementById('s-home-view').classList.remove('hidden'); document.getElementById('s-results-view').classList.add('hidden');
-            document.getElementById('e-home-view').classList.remove('hidden'); document.getElementById('e-results-view').classList.add('hidden');
-            window.scrollTo(0,0);
-        }
+    document.getElementById('home-view').classList.remove('hidden'); 
+    document.getElementById('search-results-view').classList.add('hidden');
+    document.getElementById('premium-results-view').classList.add('hidden'); // Thêm dòng này
+    document.getElementById('s-home-view').classList.remove('hidden'); 
+    document.getElementById('s-results-view').classList.add('hidden');
+    document.getElementById('e-home-view').classList.remove('hidden'); 
+    document.getElementById('e-results-view').classList.add('hidden');
+    window.scrollTo(0,0);
+}
         function showResultsView() { document.getElementById('home-view').classList.add('hidden'); document.getElementById('search-results-view').classList.remove('hidden'); window.scrollTo(0,0); }
         function showStaysResultsView() { document.getElementById('s-home-view').classList.add('hidden'); document.getElementById('s-results-view').classList.remove('hidden'); window.scrollTo(0,0); }
         function showEntResultsView() { document.getElementById('e-home-view').classList.add('hidden'); document.getElementById('e-results-view').classList.remove('hidden'); window.scrollTo(0,0); }
+		function showPremiumResultsView() {
+    document.getElementById('home-view').classList.add('hidden');
+    document.getElementById('search-results-view').classList.add('hidden');
+    document.getElementById('premium-results-view').classList.remove('hidden');
+    window.scrollTo(0,0);
+}
 
         // ================= TÌM KIẾM AUTOCOMPLETE =================
         function removeAccents(str) { return str.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").toLowerCase(); }
@@ -840,37 +931,58 @@
 
         // ================= RENDER DỮ LIỆU ĐẦY ĐỦ =================
         let filterFoodCity = "Toàn quốc";
-        function renderFood() {
-            const friLabel = getNextFridayText(currentLang);
-            const prems = restaurantsData.filter(r => r.type === 'premium');
-            document.getElementById('premium-container').innerHTML = prems.slice(0,3).map(item => {
-                const data = item[currentLang];
-                let starsHTML = ''; for(let i=0; i<5; i++) starsHTML += `<i class="fa-solid fa-star${i>=Math.floor(item.rating)? (item.rating%1!==0 && i===Math.floor(item.rating)?'-half-stroke':'-regular border-none opacity-30'):''}"></i>`;
-                return `
-                <div class="relative rounded-xl overflow-hidden card-hover cursor-pointer group bg-white shadow border border-gray-100 flex flex-col justify-between" onclick="openModal('${item.id}')">
-                    <div>
-                        <div class="relative h-44 overflow-hidden">
-                            <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-2 right-2 bg-onetrip-blue text-white text-xs font-bold px-2.5 py-1 rounded shadow">${data.tag}</div>
-                            <div class="absolute bottom-2 left-2 bg-amber-500 text-white text-[11px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
-                                <i class="fa-solid fa-gift"></i> ${data.perk}
-                            </div>
-                        </div>
-                        <div class="p-4 pb-2">
-                            <h3 class="font-bold text-lg text-gray-800 line-clamp-1">${data.name}</h3>
-                            <span class="text-gray-500 text-xs"><i class="fa-solid fa-location-dot mr-1"></i> ${data.loc}</span>
-                            <div class="mt-1.5 flex items-center text-onetrip-yellow text-xs">${starsHTML} <span class="text-gray-600 ml-2 font-medium">${item.rating} ${data.rate_txt}</span></div>
-                        </div>
+let filterPremiumCity = "Toàn quốc"; // Thêm biến lọc cho Đặt trước
+
+function applyPremiumFilters() { 
+    filterPremiumCity = document.getElementById('filterPremiumLoc').value; 
+    renderFood(); 
+}
+
+function renderFood() {
+    const friLabel = getNextFridayText(currentLang);
+    const prems = restaurantsData.filter(r => r.type === 'premium');
+
+    // Tách template thẻ nhà hàng cao cấp để dùng chung cho cả Trang chủ và Trang Xem tất cả
+    const premTpl = (item) => {
+        const data = item[currentLang];
+        let starsHTML = ''; 
+        for(let i=0; i<5; i++) starsHTML += `<i class="fa-solid fa-star${i>=Math.floor(item.rating)? (item.rating%1!==0 && i===Math.floor(item.rating)?'-half-stroke':'-regular border-none opacity-30'):''}"></i>`;
+        return `
+        <div class="relative rounded-xl overflow-hidden card-hover cursor-pointer group bg-white shadow border border-gray-100 flex flex-col justify-between" onclick="openModal('${item.id}')">
+            <div>
+                <div class="relative h-44 overflow-hidden">
+                    <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-2 right-2 bg-onetrip-blue text-white text-xs font-bold px-2.5 py-1 rounded shadow">${data.tag}</div>
+                    <div class="absolute bottom-2 left-2 bg-amber-500 text-white text-[11px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1">
+                        <i class="fa-solid fa-gift"></i> ${data.perk}
                     </div>
-                    <div class="px-4 pb-4 pt-2 border-t border-gray-100 bg-red-50/40">
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-xs text-gray-400 line-through">${formatMoney(item.price, currentLang)}</span>
-                            <span class="text-lg font-extrabold text-food-red">${formatMoney(item.salePrice, currentLang)}</span>
-                        </div>
-                        <p class="text-[11px] font-semibold text-orange-600 mt-0.5"><i class="fa-solid fa-bolt mr-1"></i>(${friLabel})</p>
-                    </div>
-                </div>`;
-            }).join('');
+                </div>
+                <div class="p-4 pb-2">
+                    <h3 class="font-bold text-lg text-gray-800 line-clamp-1">${data.name}</h3>
+                    <span class="text-gray-500 text-xs"><i class="fa-solid fa-location-dot mr-1"></i> ${data.loc}</span>
+                    <div class="mt-1.5 flex items-center text-onetrip-yellow text-xs">${starsHTML} <span class="text-gray-600 ml-2 font-medium">${item.rating} ${data.rate_txt}</span></div>
+                </div>
+            </div>
+            <div class="px-4 pb-4 pt-2 border-t border-gray-100 bg-red-50/40">
+                <div class="flex items-baseline gap-2">
+                    <span class="text-xs text-gray-400 line-through">${formatMoney(item.price, currentLang)}</span>
+                    <span class="text-lg font-extrabold text-food-red">${formatMoney(item.salePrice, currentLang)}</span>
+                </div>
+                <p class="text-[11px] font-semibold text-orange-600 mt-0.5"><i class="fa-solid fa-bolt mr-1"></i>(${friLabel})</p>
+            </div>
+        </div>`;
+    };
+
+    // Trang chủ hiện 3 cái đầu
+    document.getElementById('premium-container').innerHTML = prems.slice(0,3).map(premTpl).join('');
+
+    // Trang Xem tất cả hiện toàn bộ & lọc theo tỉnh/thành
+    let filteredPrems = prems;
+    if(filterPremiumCity !== "Toàn quốc" && filterPremiumCity !== "Nationwide") {
+        filteredPrems = prems.filter(r => r.city === filterPremiumCity);
+    }
+    document.getElementById('full-premium-container').innerHTML = filteredPrems.map(premTpl).join('');
+    document.getElementById('premium-result-count').textContent = filteredPrems.length;
 
             const recTpl = (item) => {
                 const data = item[currentLang];
@@ -1129,7 +1241,7 @@
         modal.addEventListener('click', closeModal);
 
         document.addEventListener("DOMContentLoaded", () => {
-            ['filterLoc', 's_filterLoc', 'e_filterLoc'].forEach(id => populateSelect(id));
+            ['filterLoc', 'filterPremiumLoc', 's_filterLoc', 'e_filterLoc'].forEach(id => populateSelect(id));
             setupAutocomplete('locationInput', 'locationDropdown', 'locContainer');
             setupAutocomplete('s_locInput', 's_locationDropdown', 's_locContainer');
             setupAutocomplete('e_locInput', 'e_locationDropdown', 'e_locContainer');
@@ -1206,7 +1318,7 @@
         const chatI18n = {
             vi: {
                 greet1: "Chào người chơi hệ xê dịch! Cuối tuần đến rồi, cột pin năng lượng của bạn chắc đang báo đỏ. Để OneTrip thiết kế một chuyến 'chữa lành' đo ni đóng giày cho bạn nhé! 😎",
-                greet2: "Hãy nghe xem con tim đang gào thét muốn điều gì nhất lúc này, và chọn 1 phong cách dưới đây:",
+                greet2: "Hãy nghe xem con tim bạn đang muốn đạt được điều gì sau chuyến đi này?",
                 opt1: "👑 Làm tổng tài/phu nhân 2N1Đ",
                 opt2: "🎢 Quậy tung nóc, nạp vitamin vui vẻ",
                 opt3: "🌲 Trốn thế giới, chill và thở",
@@ -1220,7 +1332,7 @@
             },
             en: {
                 greet1: "Hello wanderlust soul! The weekend is here and your energy is probably flashing red. Let OneTrip design a tailor-made 'healing' trip just for you! 😎",
-                greet2: "Listen to what your heart is screaming for right now, and choose 1 style below:",
+                greet2: "Listen to what your heart truly wants to achieve from this trip?",
                 opt1: "👑 Be a VIP for 2 Days 1 Night",
                 opt2: "🎢 Go wild, top up on happiness",
                 opt3: "🌲 Escape the world, chill and breathe",
